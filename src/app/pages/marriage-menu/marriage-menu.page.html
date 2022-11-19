@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Dhakad Matrimony</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-row class="menu">
+    <ion-col size="4"><ion-button  expand="block" [ngClass]="btn1" (click)="select('apka-menu')">Apka Marriage <br> menu</ion-button></ion-col>
+    <ion-col size="4"><ion-button  expand="block" [ngClass]="btn2" (click)="select('marriage-package')">Marriage <br> Packages</ion-button></ion-col>
+    <ion-col size="4"><ion-button  expand="block" [ngClass]="btn3" (click)="select('success-stories')">Success <br>Stories</ion-button></ion-col>
+  </ion-row>
+
+
+  <div *ngIf="btn1 == 'selected'">
+
+    <ion-row>
+      <ion-col class="image" size="12"  *ngFor="let business of businessDirectories" (click)="businessList(business.id)">
+        <ion-img [src]="httpService.img_url+business.image" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="business.loadImage= true"> </ion-img>
+        <img src="assets/images/loading.gif" alt="" [hidden]="business?.loadImage == true" loading="lazy" />
+        <p>{{business?.name}}</p>
+      </ion-col>
+  
+      <!-- <ion-col class="image" size="12">
+        <img src="assets/images/business-2.jpg" />
+        <p>Wedding Planner</p>
+      </ion-col>
+  
+      <ion-col class="image" size="12">
+        <img src="assets/images/business-1.jpg" />
+        <p>Bride Botique</p>
+      </ion-col>
+  
+      <ion-col class="image" size="12">
+        <img src="assets/images/business-2.jpg" />
+        <p>Wedding Planner</p>
+      </ion-col> -->
+    </ion-row>
+
+  </div>
+
+
+  <div class="package" *ngIf="btn2 == 'selected'">
+
+    <!-- <ion-row class="menu-2">
+      <ion-col size="4"><ion-button  expand="block" [ngClass]="btn1" (click)="select1('')"> 6 Months </ion-button></ion-col>
+      <ion-col size="4"><ion-button  expand="block" [ngClass]="btn2" (click)="select1('')"> 12 Months </ion-button></ion-col>
+      <ion-col size="4"><ion-button  expand="block" [ngClass]="btn3" (click)="select1('')"> Till Marriage </ion-button></ion-col>
+    </ion-row> -->
+
+    <div class="details" *ngFor="let marriagepackage of marriagePackages">
+      <h5>{{marriagepackage?.plan_name}} - Rs {{marriagepackage?.offer_price}}<span>{{marriagepackage?.price}}</span></h5>
+      <p [innerHtml]="marriagepackage?.description"></p>
+    </div>
+
+    <!-- <div class="details">
+      <h5>Wedding Party - Rs 20000<span>15000</span></h5>
+      <p>for 20 people</p>
+    </div>
+
+    <div class="details">
+      <h5>Wedding Party - Rs 20000<span>15000</span></h5>
+      <p>for 20 people</p>
+    </div>
+
+    <div class="details">
+      <h5>Wedding Party - Rs 20000<span>15000</span></h5>
+      <p>for 20 people</p>
+    </div> -->
+
+  </div>
+
+  <div *ngIf="btn3 == 'selected'">
+
+    <ion-row>
+      <ion-col class="stories" size="12" *ngFor="let story of successStories;">
+        <img [src]="httpService.img_url+story.StoryPic"  (load)="story.loaded = true" [hidden]="(!story.loaded)" (click)="goToDetailStories(story)"/>
+        <ion-skeleton-text animated class="skeltonClass" *ngIf="!story.loaded" ></ion-skeleton-text>
+        <img src="assets/images/loading.gif" alt="" [hidden]="story.loaded == true" loading="lazy" />
+      <div class="custom-shade">
+        <h5>{{story.Names}}</h5>
+        <!-- <p>{{story.Story}}</p> -->
+      </div>
+      </ion-col>
+
+      <!-- <ion-col class="stories" size="12">
+        <img src="assets/images/photo1.png" />
+      <div>
+        <h5>Happily Married</h5>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      </ion-col>
+
+      <ion-col class="stories" size="12">
+        <img src="assets/images/photo1.png" />
+      <div>
+        <h5>Happily Married</h5>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+      </div>
+      </ion-col> -->
+  
+     
+    </ion-row>
+
+  </div>
+  
+
+</ion-content>

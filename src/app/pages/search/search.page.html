@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Search</ion-title>
+    <ion-buttons slot="end" class="search-btn" [routerLink]="['/quick-search']">
+     <ion-icon name="search" ></ion-icon>
+     </ion-buttons>
+  
+ </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="custom-tabs">
+    <ion-row>
+      <ion-col size="6" [ngClass]="btn1"><button  [ngClass]="btn1"  (click)="select('id')">Search By ID</button></ion-col>
+      <ion-col size="6" [ngClass]="btn2"><button  [ngClass]="btn2"   (click)="select('name')">Search By Name</button></ion-col>
+     </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <div *ngIf="btn1 == 'selected'">
+      <ion-searchbar placeholder="Search user by ID"
+      [(ngModel)]="myID"
+     name="myid" id="myid"
+      (search)="onSearchByID($event, myID)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar><!-- [showCancelButton]="shouldShowCancel"-->
+
+    <ion-grid class="profiles">
+      <div *ngIf="dataByID?.length == 0" class="not-found"> No Data Found</div>
+      <ion-row *ngFor="let profile of dataByID">
+        <ion-col size="12">
+          <ion-card class="custom-card" (click)="viewProfile(profile?.ProfileId)">
+            <ion-row>
+              <!-- <ion-col><img src="assets/images/photo1.png" /></ion-col> -->
+              <ion-col>
+                <!-- <img [src]="this.base_url +  profile?.ProfileImg" /> -->
+                <ion-img [src]="this.base_url +  profile?.ProfileImg" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="profile.loadImage= true"> </ion-img>
+                <img src="assets/images/loading.gif" alt="" [hidden]="profile?.loadImage == true" loading="lazy" />
+              </ion-col>
+              <ion-col>
+                 <p class="custom-name">{{profile?.PName}}</p>
+                  <p><span>{{profile?.age}} ,</span> {{profile?.Address}}</p>
+               </ion-col>
+            </ion-row>
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </div>
+    <div *ngIf="btn2 == 'selected'">
+      <ion-searchbar placeholder="Search user by Name"
+      [(ngModel)]="myName"
+      name="myname" id="myname"
+     (search)="onSearchByName($event, myName)"
+      (ionCancel)="onCancel($event)"><!-- [showCancelButton]="shouldShowCancel"-->
+    </ion-searchbar>
+    <ion-grid>
+      <div *ngIf="dataByName?.length == 0" class="not-found"> No Data Found</div>
+      <ion-row *ngFor="let profile of dataByName">
+        <ion-col size="12">
+          <ion-card class="custom-card" (click)="viewProfile(profile?.ProfileId)">
+            <ion-row>
+              <!-- <ion-col><img src="assets/images/photo1.png" /></ion-col> -->
+              <ion-col>
+                <!-- <img [src]="this.base_url +  profile?.ProfileImg" /> -->
+                <ion-img [src]="this.base_url +  profile?.ProfileImg" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="profile.loadImage= true"> </ion-img>
+                <img src="assets/images/loading.gif" alt="" [hidden]="profile?.loadImage == true" loading="lazy" />
+              </ion-col>
+              <ion-col>
+                 <p class="custom-name">{{profile?.PName}}</p>
+                  <p><span>{{profile?.age}} ,</span> {{profile?.Address}}</p>
+               </ion-col>
+            </ion-row>
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    
+    </div>
+  </ion-grid>
+
+</ion-content>

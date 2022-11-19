@@ -1,0 +1,33 @@
+
+
+<ion-content>
+
+  <div class="top-slider">
+    <ion-slides pager="false" [options]="slideOpts">
+      <ion-slide>
+        <img src="assets/icon/couple-1.png">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/icon/couple-2.png">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/icon/couple-3.png">
+      </ion-slide>
+    </ion-slides>
+    
+    <div class="welcome-msg">
+    <h2>Hello...</h2>
+    <p>Heartily welcome to dhakad matrimonial</p>
+    </div>
+
+  </div>
+
+  <div class="bottom-section">
+    <p>If you are new user</p>
+    <ion-button expand="full" shape="round" color="primary" (click)="signup()">Sign up free</ion-button>
+    <p>Already have an account</p>
+    <ion-button expand="full" shape="round" color="danger" (click)="login()">Log in</ion-button>
+
+  </div>
+
+</ion-content>

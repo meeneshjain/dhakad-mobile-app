@@ -1,0 +1,29 @@
+ion-grid {
+    ion-row {
+        ion-col{
+            text-align: center;
+        }
+        img {
+            border-radius: 30px;
+            padding: 3px;
+            margin-bottom: 10px;
+            -webkit-box-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 10px #e3e3e3;
+        }
+    }
+}
+.image-container{
+    img{width: 160px;
+     height: 160px;}
+ }
+ .not-found {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--ion-color-secondary);
+    color: white;
+    border-radius: 3px;
+    width: 200px;
+    margin: 0 auto;
+    position: relative;
+    top: 200px;
+}

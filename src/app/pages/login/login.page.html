@@ -1,0 +1,42 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="color-overlay">
+      <div class="top-text"> <ion-button style="--background: none; --box-shadow: none;"  (click)="navigate_front()"> Sign Up Free </ion-button></div>
+
+    <div class="logo">
+      <img src="../../../assets/icon/logo.png">
+    </div>
+
+    <div class="ion-padding">
+      <form [formGroup]="loginForm">
+        <div id="login" class="ion-padding">
+          <ion-item lines="full">
+            <ion-input placeholder="Mobile / email-id" formControlName="username"></ion-input>
+          </ion-item>
+          <br>
+          <ion-item lines="full">
+            <ion-input [type]="passwordType" clearOnEdit="false" placeholder="Enter Password" formControlName="password"></ion-input>
+            <ion-button (click)='hideShowPassword()' style="--background: none; --box-shadow: none;"> <ion-icon slot="end" color="light" [name]="passwordIcon" class="passwordIcon" ></ion-icon> </ion-button>
+          </ion-item>
+      
+        </div>
+    
+        <div class="ion-padding bottom-section">
+          <p (click)="forgotPassword()">Forgot Password ?</p>
+          <ion-button color="warning" expand="full"  shape="round" (click)="login()">Login</ion-button>
+          <p>-----------------   Or  --------------------</p>
+          <div>
+            <ion-button style="--background: none; --box-shadow: none;" (click)="fbLogin()"><img src="../../../assets/icon/facebook.png" ></ion-button>
+            <ion-button style="--background: none; --box-shadow: none;" (click)="googleSignIn()" ><img class="gmail-icon" src="../../../assets/icon/gmail.png"  ></ion-button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+
+
+  </div>
+
+
+</ion-content>

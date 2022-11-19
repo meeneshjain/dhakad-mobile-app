@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gallery</ion-title>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+  <div *ngIf="userImg.length == 0" class="not-found"> No Images </div>
+  <ion-grid>
+    <ion-row class="image-container">
+      <ion-col size="6" *ngFor="let image of userImg;let idx = index" > 
+        <ion-img class="user-profile-img" [src]="image.full" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="image.loadImage= true"> </ion-img>
+        <img src="assets/images/loading.gif" alt="" [hidden]="image?.loadImage == true" loading="lazy" />
+      </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

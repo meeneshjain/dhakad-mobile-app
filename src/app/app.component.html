@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-menu side="start" type="overlay" menuId="first" contentId="main"  *ngIf="is_logged_in">
+    <ion-header>
+      <!-- <ion-toolbar color="danger">
+        <ion-title>Menu</ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-buttons>
+        
+      </ion-toolbar> -->
+    </ion-header>
+    <ion-content>
+      <div class="top-section"> 
+          <img [src]="profileImg" alt=""  onerror="this.src='assets/images/photo2.png'" />
+      </div>
+      <div class="close">
+        <ion-icon name="close-circle-outline" (click)="closeMenu()"></ion-icon>
+      </div>
+      <div class="profile">
+        
+        <h4>{{profile?.PName}}</h4>
+        <p>{{profile?.age}} Year, {{profile?.Height}}</p>
+        <ion-button color="primary" expand="full" class="edit" shape="round" (click)="open('edit-profile')">Edit Profile</ion-button>
+        <ng-container *ngIf="profile?.Purchase_plan!= undefined">
+          
+          <ion-button color="warning" expand="full"  shape="round" (click)="goPremium()" *ngIf="profile?.Purchase_plan== null || profile?.Purchase_plan== ''">Go Premium</ion-button>
+        </ng-container>
+      </div>
+
+      
+      <ion-list lines="none">
+        <ion-item (click)="openProfile('home')"><img src="assets/icon/menu/home.png"/>Home</ion-item>
+        <ion-item (click)="openProfile('search')"><img src="assets/icon/menu/search.png"/>Search</ion-item>
+        <ion-item (click)="openProfile('profiles')"><img src="assets/icon/menu/profile-menu.png"/>Profiles</ion-item>
+        <ion-item (click)="open('matches')"><img src="assets/icon/menu/matches.png"/>Matches</ion-item>
+        <ion-item (click)="open('requests')"><img src="assets/icon/menu/request.png"/>Request</ion-item>
+        <ion-item (click)="open('marriage-menu/apka-menu')"><img src="assets/icon/menu/marriage-menu.png"/>Marriage Menu</ion-item>
+        <ion-item (click)="open('add-business')"><img src="assets/icon/menu/agreement.png"/>My Business</ion-item>
+        <ion-item (click)="open('testimonials')"><img src="assets/icon/menu/testimonial.png"/>Testimonial</ion-item>
+        <ion-item (click)="open('marriage-menu/success-stories')"><img src="assets/icon/menu/success-stories.png"/>Success Stories</ion-item>
+        <ion-item (click)="open('dhakad-gallary')"><img src="assets/icon/menu/gallery.png">Gallery</ion-item>
+        <ion-item (click)="open('profile-visitors')"><img src="assets/icon/menu/profile-visitor.png"/>Profile Visitors</ion-item>
+        <ion-item (click)="open('refer-friend')"><img src="assets/icon/menu/refer.png"/>Refer to friend</ion-item>
+        <ion-item (click)="open('offers')"><img src="assets/icon/menu/offer.png"/>Offers</ion-item>
+        <!-- <ion-item><img src="assets/icon/menu/feedback.png"/>Feedback</ion-item> -->
+        <ion-item (click)="open('notifications')"><img src="assets/notifications-outline.svg" style="--color_fill: #eb445a;"/>Notifications</ion-item>
+       
+        <ion-item (click)="open('about-us')"><img src="assets/icon/menu/home.png"/>About Us</ion-item>
+        <ion-item (click)="open('setting')"><img src="assets/icon/menu/setting.png"/>Setting</ion-item>
+        <ion-item (click)="logout()"><img src="assets/icon/menu/logout.png"/>Log out</ion-item>
+      </ion-list>
+
+
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

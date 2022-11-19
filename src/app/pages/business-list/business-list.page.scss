@@ -1,0 +1,51 @@
+
+
+.business {
+
+    position: relative;
+    padding: 10px;
+    // max-height: 300px;
+
+    img {
+        border-radius: 10px;
+    }
+
+    div {
+        position: absolute;
+        width: calc(100% - 20px);
+        bottom: 10px;
+        padding: 5px;
+
+
+        p {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+         }
+    }
+   
+}
+
+.menu {
+
+    ion-col {
+        padding: 5px;
+    }
+    ion-button {
+        text-transform: none;
+        font-size: 10px;
+        padding: 6px 0px;
+    }
+}
+
+.selected {
+    --background: var(--ion-color-danger);
+}
+
+.bannerImg{
+    height: 42vh;
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "701269312784",
+    "firebase_url": "https://dhakad-demo-47304-default-rtdb.firebaseio.com",
+    "project_id": "dhakad-demo-47304",
+    "storage_bucket": "dhakad-demo-47304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701269312784:android:3e36cd60a9978b2536d195",
+        "android_client_info": {
+          "package_name": "io.ionic.dhakad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701269312784-4ud6fgv1obi0pnj1se5467j02iepshr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.dhakad",
+            "certificate_hash": "8ca1224b8552e6da1550effe43ad2290293c2095"
+          }
+        },
+        {
+          "client_id": "701269312784-bn70irl4j0j4hcm07t8npd5bpaha540m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcm7ywIbeqnE1m0CiswyJVMxlxiSeRy3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701269312784-bn70irl4j0j4hcm07t8npd5bpaha540m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

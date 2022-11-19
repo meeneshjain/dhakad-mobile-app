@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profiles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-grid class="profiles">
+    <div *ngIf="allProfiles.length == 0" class="not-found"> No Matches Found</div>
+    <ion-row *ngFor="let profile of allProfiles">
+      
+      <ion-col size="5" class="image" (click)="viewProfile(profile?.ProfileId)">
+        
+        <ion-img [src]="profileImgPath+profile?.ProfileImg"  alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="profile.loadImage= true"> </ion-img>
+        <img src="assets/images/loading.gif" alt="" [hidden]="profile?.loadImage == true" loading="lazy" />
+        <p>View Profile</p>
+      </ion-col>
+      <ion-col size="7" class="detail-col">
+        <div class="details">
+            <h4>{{profile?.PName}} </h4>
+            <p>{{profile?.age}} Year, {{profile?.Height}}<br>Address : </p>
+        </div>
+
+        <div class="actions">
+          <ion-row>
+            <ion-col (click)="sendRequest(profile?.ProfileId)"><img src="assets/icon/request.png" /><p>Send Request</p></ion-col>
+            <ion-col (click)="shortlist(profile?.ProfileId)"><img src="assets/icon/heart.png" /><p>Add Wishlist</p></ion-col>
+            <ion-col (click)="goToCall(profile?.Contact)"><img src="assets/icon/call.png" /><p>Call Now</p></ion-col>
+            <ion-col (click)="goToChat(profile?.Virtual_id,profile?.DeviceGcm)"><img src="assets/icon/message.png" /><p>Message</p></ion-col>
+          </ion-row>
+        </div>
+
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Refer Friend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-grid>
+     <ion-row>
+       <ion-col size="12">
+         <ion-card class="custm-card">
+           <img src='assets/icon/refer-friend.jpeg'/>
+           <ion-card-content>
+           Invite Friend to Dhakad Matrimony
+           <p>You will both got offer when your friend installs Dhakad Matrimony App.</p>
+           
+          </ion-card-content>
+         
+            <ion-button (click)="getInvite()">Invite Friend</ion-button>
+         
+         </ion-card>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+</ion-content>

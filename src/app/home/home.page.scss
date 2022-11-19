@@ -1,0 +1,275 @@
+.header {
+  background-color: var(--ion-color-danger);
+  margin: 10px;
+  border-radius: 2px;
+  color: white;
+  font-size: 16px;
+  
+  ion-col:first-child {
+    padding-left: 10px;
+  }
+
+  ion-col:nth-child(2) {
+    text-align: right;
+    padding-right: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+}
+
+.profiles {
+  position: relative;
+  img {
+    border-radius: 5px;
+    min-height: 190px;
+  }
+
+  ion-col:nth-child(odd) {
+    padding-right: 8px;
+  }
+
+  ion-col:nth-child(even) {
+    padding-left: 8px;
+  }
+
+  p {
+    // text-align: center;
+    color: white;
+    position: absolute;
+    width: calc(100% - 10px);
+    bottom: 5px;
+    left: 15px;
+    font-size: 15px;
+    bottom: -16px;
+    
+  }
+
+  .detail {
+    font-size: 10px;
+  }
+  .location {
+    font-size: 11px;
+  }
+}
+
+.marriage-menu {
+  position: relative;
+  img {
+    border-radius: 20px;
+  }
+
+  p {
+    text-align: center;
+    color: white;
+    position: absolute;
+    width: calc(100% - 10px);
+    bottom: 5px;
+    font-size: 15px;
+    
+  }
+
+  ion-col:nth-child(odd) {
+    padding-right: 8px;
+    text-align: center;
+  }
+
+  ion-col:nth-child(even) {
+    padding-left: 8px;
+    text-align: center;
+  }
+}
+
+.success-stories {
+  position: relative;
+  background-color: var(--ion-color-danger);
+
+  .success-title {
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin: 0px;
+    padding-top: 10px;
+    font-size: 18px;
+  }
+  img {
+    border-radius: 5px 25px 5px 5px;
+  }
+
+  ion-col {
+    p {
+      text-align: center;
+      color: white;
+      position: absolute;
+      width: calc(100% - 10px);
+      bottom: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      
+    }
+
+    .view {
+      position: absolute;
+      width: calc(100% - 13px);
+      text-align: center;
+      bottom: 9px;
+      font-size: 12px;
+      background-color: white;
+      color: var(--ion-color-danger);
+      padding: 5px 0;
+      border-radius: 0 0 5px 5px;
+
+      ion-icon {
+        top: 2px;
+        position: relative;
+      }
+    }
+  }
+  
+
+  ion-col:nth-child(odd) {
+    padding-right: 8px;
+  }
+
+  ion-col:nth-child(even) {
+    padding-left: 8px;
+  }
+}
+
+
+.testimonials {
+
+  margin: 10px;
+  background-color: var(--ion-color-danger);
+  border-radius: 5px;
+  
+
+  .testimonial-title {
+    width: 100;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 18px;
+  }
+
+  ion-slides {
+    --bullet-background: white;
+    --bullet-background-active: black;
+    text-align: center;
+
+    p {
+      color: white;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+  }
+
+  .swiper-slide {
+    display: block;
+  }
+}
+
+.custom-details{
+  p{color:black;}
+  
+}
+.custom-name{
+  ion-col:first-child{
+    color:#fff;
+  }
+  button{
+    border-radius: 20px;
+    background-color: #FBE843;
+    font-size: 13px;
+    padding: 5px;
+    width: 100%;
+  }
+}
+.custom-age{
+  font-size:13px;
+  color:#fff;
+p{
+    border-top: 1px solid #fff;
+    margin: 0px 0px 25px -9px;
+  }
+
+}
+.custom-caste{
+  ion-col:first-child{
+    color:#fff;
+  }
+button{border-radius: 50px;
+background-color: #50CFFA;
+padding: 5px;
+font-size: 13px;
+width: 100%;
+}
+}
+
+.card-bg{
+  ion-card{
+    position:relative;
+    
+  }
+  
+  .card-body{
+    position: absolute;
+    bottom: 5px;
+    z-index: 1;
+    width: 100%;
+  }
+  ion-card::after{
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #090001 100%);
+    margin-top: -150px;
+    height: 150px;
+    width: 100%;
+    content: '';
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+  ion-card{max-height: 250px;
+ 
+  }
+  .profiles{
+    img{min-height:250px;}
+  }
+  .custom-name{
+    ion-col{padding-top:0px;padding-bottom:0px;}
+    ion-col:first-child{
+      font-size: 11px;
+    }
+    button{
+     font-size: 8px;
+    }
+  }
+  .custom-age{
+    font-size: 10px;
+    ion-col{padding-top:0px;padding-bottom:0px;}
+    p{    margin: 0px 0px 22px -7px;}
+    }
+  .custom-caste{
+    ion-col:first-child{
+      font-size:10px
+    }
+    ion-col{padding-top:0px;padding-bottom:0px}
+  button{
+  
+  font-size: 8px;
+  
+  }
+  }
+  
+}
+.custom-paid{position: absolute;
+  width: 70px;
+  height: 91px;
+  min-height: 91px!important;}

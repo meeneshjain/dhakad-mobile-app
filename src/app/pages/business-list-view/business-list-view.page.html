@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/business-list/:id"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wedding Planner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="content bg-light-2">
+    <!-- <img [src]="httpService.img_url+businessDetail.image1" /> -->
+
+    <ion-row>
+      <ion-col size="1"><ion-icon name="home" color="danger"></ion-icon></ion-col>
+      <ion-col size="11"><p><span>{{businessDetail?.name}}</span></p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><ion-icon name="location" color="danger"></ion-icon></ion-col>
+      <ion-col size="11"><p><span>Address : </span>{{businessDetail?.city}}, {{businessDetail?.state}}</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><ion-icon name="call" color="danger"></ion-icon></ion-col>
+      <ion-col size="11"><p><span>Contact No : </span>{{businessDetail?.contact}}</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><ion-icon name="newspaper" color="danger"></ion-icon></ion-col>
+      <ion-col size="11"><p><span>Description :</span> {{businessDetail?.description}}</p></ion-col>
+    </ion-row>
+ 
+  </div>
+
+
+</ion-content>

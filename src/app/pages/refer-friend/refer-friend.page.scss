@@ -1,0 +1,20 @@
+.custm-card{
+    text-align: center;
+    padding: 22px;
+    img{width: 233px;
+        height: 168px;}
+        ion-card-content{
+            font-size: 18px;
+            p{
+                margin-top: 16px;
+                 font-size: 12px;
+            }
+        }
+       
+            ion-button{
+                
+                    --background: #fe5e3a;
+                
+            }
+      
+}

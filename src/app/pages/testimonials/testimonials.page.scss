@@ -1,0 +1,35 @@
+
+.testimonial {
+    text-align: center;
+    margin-top: 25px;
+    border:1px solid black;
+  
+    padding: 10px;
+    border-radius: 15px;
+
+    h5 {
+        margin: 0px;
+        font-weight: 600;
+    }
+
+    h6 {
+        margin: 5px 0px;
+    }
+
+    p {
+        margin: 20px 0px 10px 0px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    
+}
+
+.img {
+    border-radius: 30px;
+    padding: 3px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #e3e3e3;
+    width: 150px;
+}

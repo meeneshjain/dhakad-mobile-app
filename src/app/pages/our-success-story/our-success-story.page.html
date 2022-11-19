@@ -1,0 +1,28 @@
+
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Our Success Story</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col class="stories" size="12" >
+      <ion-img [src]="profileImgPath+storyData.StoryPic" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="storyData.loadImage= true"> </ion-img>
+    <img src="assets/images/loading.gif" alt="" [hidden]="storyData?.loadImage == true" loading="lazy" />
+    <div class="custom-text">
+      <h5>Our Success Story</h5>
+      <span>{{storyData.modify_date | date : 'dd-MM-yyyy'}}</span>
+      <p>{{storyData.Story}}</p>
+    </div>
+    </ion-col>
+
+   
+
+   
+  </ion-row>
+</ion-content>

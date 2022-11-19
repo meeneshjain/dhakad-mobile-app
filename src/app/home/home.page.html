@@ -1,0 +1,156 @@
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dhakad Matrimony</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <div>
+    <ion-row class="header">
+      <ion-col>Profile</ion-col><ion-col><span (click)="open('matches')">View All</span></ion-col>
+    </ion-row>
+   
+    <ion-grid class="profiles">
+      <ion-row>
+        <ion-col size="6" class="card-bg" *ngFor="let profile of profiles | slice:0:4;let i = index">
+        
+          <ion-card (click)="viewProfile(profile?.ProfileId)">
+           <img *ngIf="profile?.IsPurchase == 1" class="custom-paid" src="assets/icon/ic_premium.png"/>
+           <!-- <img [src]="profileImgPath+profile?.ProfileImg" alt=""  onerror="this.src='assets/images/photo2.png'"/> -->
+            <ion-img [src]="profileImgPath+profile?.ProfileImg" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="profile.loadImage= true"> </ion-img>
+            
+            <img src="assets/images/loading.gif" alt="" [hidden]="profile?.loadImage == true" loading="lazy" />
+          <ion-grid class="card-body">
+            <ion-row class="custom-name">
+              <ion-col size="6">{{profile?.PName}}</ion-col>
+              <ion-col size="6">
+         
+          <button (click)="sendRequest(profile?.ProfileId)" [disabled] ="reqsentId == profile.ProfileId">Send Request</button>
+              </ion-col>
+            </ion-row>
+            <ion-row class="custom-age">
+              <ion-col size="6">{{profile?.age}} years, {{profile?.Height}}</ion-col>
+              <ion-col><p></p></ion-col>
+             </ion-row>
+            <ion-row class="custom-caste">
+              <ion-col size="6">{{profile?.Caste}}</ion-col>
+              <ion-col size="6"><button (click)="viewProfile(profile?.ProfileId)" >View Profile</button></ion-col>
+            </ion-row>
+          </ion-grid>
+         </ion-card>
+           <!-- <p>{{profile?.PName}} <br><span class="detail"></span><br><span class="location"></span></p> -->
+       
+        </ion-col>
+        <!-- <ion-col size="6">
+          <img src="assets/images/photo1.png" (click)="viewProfile()"/>
+          <p>Rashmi Patel <br><span class="detail">29 year, 5'2"</span><br><span class="location">Piparya</span></p>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/photo1.png" (click)="viewProfile()"/>
+          <p>Rashmi Patel <br><span class="detail">29 year, 5'2"</span><br><span class="location">Piparya</span></p>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/photo1.png" (click)="viewProfile()"/>
+          <p>Rashmi Patel <br><span class="detail">29 year, 5'2"</span><br><span class="location">Piparya</span></p>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Business section-->
+  <div>
+    <ion-row class="header">
+      <ion-col>Marriage Menu</ion-col><ion-col><span (click)="open('marriage-menu/apka-menu')">View All</span></ion-col>
+    </ion-row>
+    <ion-grid class="marriage-menu">
+      <ion-row>
+        <ion-col size="6" *ngFor="let business of businesses | slice:0:4;let i = index" (click)="businessList(business.id)">
+          <ion-img [src]="httpService.img_url+business?.image" (ionImgDidLoad)="business.loadImage= true" ></ion-img>
+          <img src="assets/images/loading.gif" alt="" [hidden]="business.loadImage == true" loading="lazy" />
+          
+          <p>{{business?.name}}</p>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <img src="assets/images/mehndi.jpg" />
+          <p>Mehndi Designer</p>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/bride.jpg" />
+          <p>Bride Boutique</p>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/mehndi.jpg" />
+          <p>Mehndi Designer</p>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Success Stories-->
+  <div class="success-stories">
+    <p class="success-title"> Success Stories </p>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="6" *ngFor="let sucessStory of successStories | slice:0:4;let i = index">
+          <ion-img [src]="httpService.img_url+sucessStory.StoryPic"  (ionImgDidLoad)="sucessStory.loadImage= true" ></ion-img>
+          <img src="assets/images/loading.gif" alt="" [hidden]="sucessStory.loadImage == true" loading="lazy" />
+          <p>Happily Married</p>
+          <div class="view" (click)="open('marriage-menu/success-stories')">
+            View <ion-icon name="eye"></ion-icon>
+          </div>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <img src="assets/images/photo2.png" />
+          <p>Happily Married</p>
+          <div class="view">
+            View <ion-icon name="eye"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/photo2.png" />
+          <p>Happily Married</p>
+          <div class="view">
+            View <ion-icon name="eye"></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <img src="assets/images/photo2.png" />
+          <p>Happily Married</p>
+          <div class="view">
+            View <ion-icon name="eye"></ion-icon>
+          </div>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div class="testimonials">
+    <p class="testimonial-title">Testimonials</p>
+    <ion-slides  pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let testimonial of testimonials" (click)="open('testimonials')" class="center-align">
+        <ion-img [src]="httpService.img_url+testimonial.ProfilePic"  (ionImgDidLoad)="testimonial.loadImage= true" style="max-width: 300px;
+  max-height: 350px;" ></ion-img>
+        <img src="assets/images/loading.gif" alt="" [hidden]="testimonial.loadImage == true" loading="lazy" />
+        <p> {{testimonial?.Client}} </p> 
+      </ion-slide>
+      <!-- <ion-slide>
+        <img src="assets/images/photo2.png">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p> 
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/images/photo2.png">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p> 
+      </ion-slide> -->
+    </ion-slides>
+  </div>
+ 
+</ion-content>

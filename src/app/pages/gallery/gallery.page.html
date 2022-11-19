@@ -1,0 +1,33 @@
+<!-- <ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gallery</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="custom-gallary" >
+  <div *ngIf="userImg.length == 0" class="not-found"> No Images </div>
+  <ion-grid>
+    <ion-row class="image-container">
+      <ion-col size="6" *ngFor="let image of userImg;let idx = index" (click)="onItemClicked(image, idx)" [class.selected]="idx === currentSelected ">    
+        <ion-img class="user-profile-img" [src]="image.full" alt="" (ionError)="error_image(img)" #img
+              (ionImgDidLoad)="image.loadImage= true"> </ion-img>
+        <img src="assets/images/loading.gif" alt="" [hidden]="image?.loadImage == true" loading="lazy" />
+      </ion-col>
+      <!-- <ion-col size="6"><img src="assets/images/photo1.png" /></ion-col>
+      <ion-col size="6"><img src="assets/images/photo1.png" /></ion-col>
+      <ion-col size="6"><img src="assets/images/photo1.png" /></ion-col>
+      <ion-col size="6"><img src="assets/images/photo1.png" /></ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+  <!-- <input #imageInput accept="image/*" (change)="processFile(imageInput)" name="upload-photo" type="file" id="upload-photo" /> -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed"> 
+    <ion-fab-button color="danger" (click)="actAddImage()">
+      <ion-icon name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

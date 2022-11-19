@@ -1,0 +1,169 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add business</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="businessForm" >
+    <div id="login" class="ion-padding">
+      <div class="custm-img" (click)="updateProfileImage()" > <!--(click)="updateProfileImage()"--> 
+         <img [src]="domSanitizer.bypassSecurityTrustUrl(userImg)"  alt="" class="camera-img" />
+         <ion-icon name="create-sharp" color="danger" (click)="updateProfileImage()"></ion-icon>
+     </div>
+     <ion-grid class="custom-grid">
+       <ion-row>
+         <ion-col size="12">
+          <label>Business</label>
+         <ion-select placeholder="Select the Business" formControlName="Business">
+          <ion-select-option *ngFor="let data of businessCat" value={{data.id}}>{{data.ctg_name}}</ion-select-option>
+         
+         </ion-select>
+         <!-- <div *ngIf="businessForm.controls['Business'].touched &&
+           businessForm.controls['Business'].invalid" 
+           class="alert-danger">
+           <div *ngIf="businessForm.controls['Business'].errors &&
+           businessForm.controls['Business'].errors.required">
+               Field is required.</div>
+       </div> -->
+       <div *ngIf="f.Business.touched && f.Business.invalid" class="alert alert-danger">
+
+        <div *ngIf="f.Business.errors.required">Field is required.</div>
+
+    </div>
+         </ion-col>
+         <ion-col size="12">
+          <label>Name</label>
+          <ion-input  formControlName="Name"></ion-input>
+          <!-- <div *ngIf="businessForm.controls['Name'].touched &&
+           businessForm.controls['Name'].invalid" 
+           class="alert-danger">
+           <div *ngIf="businessForm.controls['Name'].errors &&
+           businessForm.controls['Name'].errors.required">
+               Field is required.</div>
+       </div> -->
+       <div *ngIf="f.Name.touched && f.Name.invalid" class="alert alert-danger">
+
+        <div *ngIf="f.Name.errors.required">Field is required.</div>
+
+    </div>
+         </ion-col>
+         <ion-col size="12">
+          <label>Email</label>
+          <ion-input type="email"  formControlName="email"></ion-input>
+          <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.email.errors.required">Field is required.</div>
+            <div *ngIf="f.email.errors.email">Should be valid Email.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+          <label>Contact</label>
+          <ion-input type="tel"  maxlength="10" formControlName="contact"></ion-input>
+          <div *ngIf="f.contact.touched && f.contact.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.contact.errors.required">Field is required.</div>
+            <div *ngIf="f.contact.errors.pattern">Should be valid Contact Number.</div>
+            <div *ngIf="f.contact.errors.minlength"> Contact Number should be 10 digits.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+           <label>Description</label>
+           <textarea lines=5 formControlName="description"></textarea>
+           <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.description.errors.required">Field is required.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+           <label>Address</label>
+           <textarea lines=5 formControlName="address" ></textarea>
+           <div *ngIf="f.address.touched && f.address.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.address.errors.required">Field is required.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+           <label>State</label>
+           <ion-select placeholder="Select the state"  formControlName="state" (ionChange)="getCity($event.target.value)">
+            <ion-select-option *ngFor="let data of stateData" value={{data.id}}>{{data.name}}</ion-select-option>
+            
+           </ion-select>
+           <div *ngIf="f.state.touched && f.state.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.state.errors.required">Field is required.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+           <label>City</label>
+           <ion-select placeholder="Select the city" formControlName="city">
+            <ion-select-option *ngFor="let data of cityData" value={{data.id}}>{{data.city_name}}</ion-select-option>
+           
+           </ion-select>
+           <div *ngIf="f.city.touched && f.city.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.city.errors.required">Field is required.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+           <label>District</label>
+           <ion-input type="text"  formControlName="District"></ion-input>
+           <div *ngIf="f.District.touched && f.District.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.District.errors.required">Field is required.</div>
+    
+        </div>
+         </ion-col>
+         <ion-col size="12">
+          <label>Pincode</label>
+          <ion-input type="number" maxlength="6" onKeyPress="if(this.value.length==6) return false;" formControlName="Pincode"></ion-input>
+          <div *ngIf="f.Pincode.touched && f.Pincode.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.Pincode.errors.required">Field is required.</div>
+            <div *ngIf="f.Pincode.errors.minlength"> Pincode should be 6 digit.</div>
+           
+    
+        </div>
+        </ion-col>
+        <ion-col size="12">
+          <label>Website Link</label>
+          <ion-input type="text"  formControlName="weblink"></ion-input>
+          <div *ngIf="f.weblink.touched && f.weblink.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.weblink.errors.required">Field is required.</div>
+    
+        </div>
+        </ion-col>
+        <ion-col size="12">
+          <label>Playstore Link</label>
+          <ion-input type="text"  formControlName="playstoreLink"></ion-input>
+          <div *ngIf="f.playstoreLink.touched && f.playstoreLink.invalid" class="alert alert-danger">
+
+            <div *ngIf="f.playstoreLink.errors.required">Field is required.</div>
+    
+        </div>
+
+        </ion-col>
+       </ion-row>
+     </ion-grid>
+      <br>
+      <br>
+     
+      <ion-button color="danger" expand="full" [disabled]="!businessForm.valid" (click)="addBusiness()" shape="round"  >Add</ion-button>
+  
+    </div>
+
+     
+      
+     
+  </form>
+</ion-content>

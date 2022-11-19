@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Offers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="offer" *ngFor="let offer of offers">
+
+    <ion-row>
+      <ion-col size="7">{{offer?.plan_name}}</ion-col>
+      <ion-col size="5"></ion-col>
+    </ion-row>
+
+    <p class="offer-detail">Offer Detail - {{offer?.price}}</p>
+    <div class="description">
+      <h5>Description</h5>
+      <p [innerHtml]="offer.description"></p>
+    </div>
+    <ion-button  (click)="payWithRazor(offer?.actual_price,offer?.id,offer?.plan_name)" expand="block">Get Offer</ion-button>
+    <!-- <ion-button  expand="block">Get Offer</ion-button> -->
+
+  </div>
+
+  <!-- <div class="offer">
+
+    <ion-row>
+      <ion-col size="7">Golden Offer</ion-col>
+      <ion-col size="5">Offer till-2/2/21</ion-col>
+    </ion-row>
+
+    <p class="offer-detail">Offer Detail - 7000 + 18% GST = 8260</p>
+    <div class="description">
+      <h5>Description</h5>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
+    <ion-button  expand="block">Get Offer</ion-button>
+    
+  </div> -->
+  
+</ion-content>

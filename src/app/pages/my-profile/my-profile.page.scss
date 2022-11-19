@@ -1,0 +1,251 @@
+.white{
+        color: white !important;
+}
+
+ 
+ .profile-img ion-slides .swiper-pagination .swiper-pagination-bullets  {
+    bottom: 70px!important;
+}
+
+.profile-img {
+    
+   // position: relative;
+   // margin-right: 10px;
+   // margin-left: 10px;
+   ion-slide{
+    position: relative;  
+    
+   }
+   
+    img {
+         //height : 402px;
+         height: 534px;
+    }
+    div {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+        bottom: 189px;
+        padding: 5px;
+        background-color: white;
+        border-radius: 150px 150px 0 0;
+
+        h5 {
+            text-align: center;
+            color: var(--ion-color-medium);
+            font-size: 18px;
+            margin: 5px;
+            font-weight: 600;
+        }
+    
+        p {
+            text-align: center;
+            color: var(--ion-color-medium);
+            font-size: 11px;
+            margin: 5px;
+         }
+    }
+}
+
+.about {
+    font-size: 11px;
+    color: var(--ion-color-medium);
+    margin: 5px 30px;
+    text-align: center;
+    line-height: 16px;
+    min-height: 15px;
+}
+
+
+
+.top-menu {
+
+    ion-col {
+        padding: 2px;
+    }
+    ion-button {
+        font-size: 12px;
+        text-transform: none;
+        // height: 20px;
+    }
+}
+
+.heading {
+
+        padding-left: 5px;
+    
+
+    p {
+        margin: 0px;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+
+    img {
+        position: relative;
+        top: 3px;
+        width: 12px;
+    }
+
+    span {
+        color: var(--ion-color-danger);
+        font-size: 18px;
+    }
+}
+
+
+.details {
+
+    ion-row {
+        padding-left: 5px;
+    }
+
+    ion-input {
+        --padding-top: 5px;
+        --padding-bottom: 5px;
+        font-size: 15px;
+        border-bottom: 1px solid #d5d5d5;
+    }
+
+    .line-rev {
+        border-bottom: none !important;
+    }
+    
+
+    p {
+        margin: 0px;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 600;
+        padding-top: 2px;
+    }
+
+    img {
+        position: relative;
+        top: 3px;
+        width: 12px;
+    }
+
+}
+
+.content {
+    font-size: 12px;
+    padding: 5px 10px 10px 10px;
+    line-height: 16px;
+    ion-textarea {
+        --padding-top: 0px;
+        --padding-bottom: 0px;
+        margin-top: 0px;
+        --padding-start: 2px;
+        border-bottom: 1px solid #d5d5d5;
+        font-size: 15px;
+    line-height: 20px;
+    }
+}
+
+.selected {
+    --background: var(--ion-color-danger);
+}
+
+.save {
+    text-align: center;
+    ion-button {
+        font-size: 15px;
+        text-transform: none;
+        // height: 20px;
+        width: 150px;
+    }
+}
+
+ion-select {
+    --padding-top: 2px;
+    --padding-bottom: 2px;
+    --padding-start: 8px;
+    border-bottom: 1px solid #d5d5d5;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+ion-text {
+    border-bottom: 1px solid #d5d5d5;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.custom-req-text{
+    text-align: center;
+}
+.custom-req-icon{
+    text-align:center;
+    div{
+    background-color: #eae9e9;
+    border-radius: 50%;
+    display: inline-block;
+    /* min-height: 41px; */
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+    .ic-add{
+        top: 16px;
+        font-size: 50px;
+        position: absolute;
+        left: 16px;
+    }
+    .ic-call{    top: 17px;
+        font-size: 45px;
+        position: absolute;
+        left: 18px;}
+     .ic-msg{        top: 25px;
+        font-size: 35px;
+        position: absolute;
+        left: 23px;
+        }
+    .ic-fav{top: 20px;
+        font-size: 45px;
+        position: absolute;
+        left: 18px;
+    }
+    
+
+
+}
+
+// $breakpoints: (phone: 640px, 
+//                tablet: 768px, 
+//                desktop: 1024px) !default;
+
+// @include media(">phone", "<tablet") {
+//     .custom-req-icon{
+       
+//         div{width: 80px;
+//             height: 80px;}
+//     }
+//     .custom-req-text{
+//         font-size: 15px;
+//     }
+// }
+
+
+ion-button {
+    --background: #1db7e5;
+    }
+ .custom-body{
+        position: absolute;
+        top: 445px;
+        z-index: 1;
+        width: 100%;
+        border-radius: 95px 95px 0 0;
+        background: white;
+    }
+    .custom-details{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 20px;
+         color: var(--ion-color-medium);
+         h5{ margin: 0px;}
+         p{margin: 5px;
+            font-size: 13px;}
+    }

@@ -1,0 +1,33 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="color-overlay">
+    <div class="top-text">Sign in</div>
+
+    <div class="logo">
+      <img src="../../../assets/icon/logo.png">
+    </div>
+
+    
+    
+        <div id="login" class="ion-padding">
+          <ion-item lines="full">
+            <ion-input type="tel" placeholder="OTP" [(ngModel)]="otp"></ion-input>
+          </ion-item>
+          <p class="resend" (click)="resendOtp()">Re-Send</p>
+          <ion-button color="danger" expand="full"  shape="round" (click)="submit()">Submit</ion-button>
+      
+        </div>
+    
+         
+          
+         
+     
+  
+    
+
+
+  </div>
+
+
+</ion-content>

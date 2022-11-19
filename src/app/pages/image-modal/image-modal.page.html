@@ -1,0 +1,14 @@
+
+
+<ion-content>
+  
+  <ion-back-button defaultHref="/home" class="custom-btn"></ion-back-button>
+
+  <ion-slides  pager="true" class="custom-slide">
+    <ion-slide *ngFor="let pics of gallary" >
+      <div class="swiper-zoom-container">
+      <img [src]="pics"> 
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,72 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+/**** pager css on view profile ***/
+.profile-img {
+    ion-slides {
+        .swiper-pagination-bullet {
+            opacity: 1;
+            width: 10px;
+            height: 10px;
+        }
+         .swiper-pagination-bullet-active{
+            opacity: 1;
+            width: 13px;
+            height: 13px;
+        }
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+        bottom: 98px !important;
+    }
+  }
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  white-space: normal !important;
+}
+
+.w-30{
+  width: 30%;
+}
+
+.center{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet:not(:first-child, :last-child) {
+  display: none !important;
+}
+
+ 
+.center-align{
+    margin: auto;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 45px;
+}

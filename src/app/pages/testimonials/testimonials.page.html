@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Testimonials</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="testimonial" *ngFor="let testimonial of testimonials">
+    <div class="container">
+      <ion-img [src]="httpService.img_url+testimonial.ProfilePic" alt="" class="w-30 img" (ionError)="error_image(img)" #img
+                (ionImgDidLoad)="testimonial.loadImage= true"> </ion-img>
+      
+      <img src="assets/images/loading.gif" alt="" class="w-30 img" [hidden]="testimonial?.loadImage == true" loading="lazy" />
+      <h5>{{testimonial.Client}}</h5>
+      <h6>{{testimonial.Designation}}</h6>
+      <p>{{testimonial.Testimonial}}</p>
+    </div>
+  </div>
+
+  <!-- <div class="testimonial">
+    <div class="container">
+      <img src="assets/images/photo1.png" />
+      <h5>Rashmi Patel</h5>
+      <h6>Pipariya</h6>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book
+      </p>
+    </div>
+  </div>
+
+  <div class="testimonial">
+    <div class="container">
+      <img src="assets/images/photo1.png" />
+      <h5>Rashmi Patel</h5>
+      <h6>Pipariya</h6>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book
+      </p>
+    </div>
+  </div> -->
+  
+</ion-content>

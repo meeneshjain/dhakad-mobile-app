@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/marriage-menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wedding Planner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  <!-- <ion-row class="menu">
+    <ion-col size="6"><ion-button  expand="block" [ngClass]="btn1" (click)="select('your-city')">Your City</ion-button></ion-col>
+    <ion-col size="6"><ion-button  expand="block" [ngClass]="btn2" (click)="select('near-me')">Near Me</ion-button></ion-col>
+  
+  </ion-row> -->
+
+
+  <div>
+
+    <ion-row>
+      <ion-col class="business" size="12" *ngFor="let business of businessList" (click)="detailView(business)">
+        <img class="bannerImg" [src]="httpService.img_url+business.image1" onerror="src='assets/images/business-2.jpg'" />
+        <div>
+          <p>{{business?.name}}</p>
+          <p>{{business?.city}}</p>
+        </div>
+        
+      </ion-col>
+  
+      <!-- <ion-col class="business" size="12">
+        <img src="assets/images/business-2.jpg" />
+        <div>
+          <p>Bride Botique</p>
+          <p>Hoshangabad</p>
+        </div>
+      </ion-col>
+  
+      <ion-col class="business" size="12">
+        <img src="assets/images/business-1.jpg" />
+        <div>
+          <p>Bride Botique</p>
+          <p>Hoshangabad</p>
+        </div>
+      </ion-col> -->
+  
+    </ion-row>
+
+  </div>
+  
+
+</ion-content>

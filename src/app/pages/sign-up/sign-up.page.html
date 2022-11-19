@@ -1,0 +1,85 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="color-overlay">
+    <div class="top-text" ><ion-button style="--background: none; --box-shadow: none;" (click)="navigate_back()"> Back to Login </ion-button></div>
+
+    <div class="logo">
+      <img src="../../../assets/icon/logo.png">
+    </div>
+
+    
+      <form [formGroup]="registerForm">
+        <div id="login" class="ion-padding">
+          <div class="custm-img" (click)="updateProfileImage()">
+             <img [src]="domSanitizer.bypassSecurityTrustUrl(userImg)"  alt=""  class="camera-img" />
+             <ion-icon name="create-sharp" color="danger" ></ion-icon>
+         </div>
+          <ion-item lines="full">
+            <ion-input placeholder="Full Name" formControlName="fullname"></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-input type="tel" placeholder="Phone number" maxlength="10" formControlName="contact"></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-datetime displayFormat="DD/MM/YYYY" max="{{maxDob}}" placeholder="Date of Birth" formControlName="dob"></ion-datetime>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-select placeholder="Gender" formControlName="gender">
+              <ion-select-option value="Male">Male</ion-select-option>
+              <ion-select-option value="Female">Female</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-select placeholder="Marital Status" formControlName="martstatus">
+              <ion-select-option value={{d}} *ngFor="let d of maritial_status">{{d}}</ion-select-option>
+              
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-select placeholder="Religion" formControlName="religion">
+              <ion-select-option *ngFor="let rel of religion">{{rel}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-select placeholder="Caste" formControlName="subcaste">
+              <ion-select-option *ngFor="let cs of caste">{{cs}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full">
+            <!-- <ion-select placeholder="Sub Caste" formControlName="subcaste1">
+              <ion-select-option *ngFor="let cs of caste">{{cs}}</ion-select-option>
+            </ion-select> -->
+            <ion-input placeholder="Sub Caste" formControlName="subcaste1"></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-input type="password" placeholder="Password" formControlName="pwd"></ion-input>
+          </ion-item>
+          <br>
+          <br>
+          <ion-button color="danger" expand="full"  shape="round" (click)="register()">Submit</ion-button>
+      
+        </div>
+    
+         
+          
+         
+      </form>
+  
+    
+
+
+  </div>
+
+
+</ion-content>

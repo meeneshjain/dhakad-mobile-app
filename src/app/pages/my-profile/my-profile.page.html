@@ -1,0 +1,289 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="profile-img">
+    <ion-slides  pager="true" *ngIf="gallaryPics.length != 0"  >
+      <ion-slide *ngFor="let pics of gallaryPics" >
+       <img [src]="pics" onerror="this.src='assets/images/photo2.png'" (click)="goToProfilePics()"  />
+      </ion-slide>
+     </ion-slides>
+    <img *ngIf="gallaryPics.length == 0" [src]="profileImgPath+myProfile?.ProfileImg" onerror="this.src='assets/images/photo2.png'" /> 
+       
+  </div>
+  <div class="custom-body">
+  <div class="custom-details">
+    <h5>{{myProfile?.PName}}</h5>
+    <p>{{myProfile?.age}} years, {{myProfile?.Height}}cm height</p>
+  </div>
+  <div class="about">
+    {{myProfile?.aboutme_converted}} 
+  </div>
+
+  <ion-grid *ngIf="!isMyProfile">
+    <ion-row class="custom-req-icon">
+      <ion-col size="3">
+        <div >
+          <ion-icon (click)="sendRequest(myProfile?.ProfileId)" class="ic-add" src="../../assets/ic_add.svg"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div >
+          <ion-icon (click)="shortlist(myProfile?.ProfileId)" class="ic-fav" src="../../assets/ic_fav.svg"></ion-icon>
+        </div>
+       
+      </ion-col>
+      <ion-col size="3">
+        <div >
+          
+          <ion-icon class="ic-call" (click)="goToCall(myProfile?.Contact)" src="../../assets/ic_call.svg"><span></span></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div >
+          <ion-icon (click)="goToChat()" class="ic-msg" src="../../assets/ic_msg.svg"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="custom-req-text">
+      <ion-col size="3" class="white"> Sent Request</ion-col>
+      <ion-col size="3" class="white"> Add Wishlist</ion-col>
+      <ion-col size="3" class="white"> Call Now</ion-col>
+      <ion-col size="3" class="white"> Message</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="top-menu">
+    <ion-row>
+      <ion-col size="3"><ion-button  expand="block"   [ngClass]="btn1" (click)="select('tab1')">Personal <br>Details</ion-button></ion-col>
+      <ion-col size="3"><ion-button  expand="block"   [ngClass]="btn2" (click)="select('tab2')">Basic <br>Details</ion-button></ion-col>
+      <ion-col size="3"><ion-button  expand="block"   [ngClass]="btn3" (click)="select('tab3')">Educational <br>Details</ion-button></ion-col>
+      <ion-col size="3"><ion-button  expand="block"   [ngClass]="btn4" (click)="select('tab4')">Contact <br>Details</ion-button></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngIf="btn1 == 'selected'">  
+    
+      <ion-row class="heading">
+        <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+        <ion-col size="11"><p><span>About {{myProfile?.PName}}</span></p></ion-col>
+      </ion-row>
+
+      <div class="content">
+        {{myProfile?.aboutme_converted}}
+      </div>
+
+      <ion-row class="heading">
+        <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+        <ion-col size="11"><p><span>About Life Partner</span></p></ion-col>
+      </ion-row>
+
+      <div class="content">
+        {{myProfile?.aboutpartner_converted}}
+      </div>
+
+      <ion-row class="heading">
+        <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+        <ion-col size="11"><p><span>Preference</span></p></ion-col>
+      </ion-row>
+
+      <div class="content">
+        {{myProfile?.preferences}}
+      </div>
+  
+  </ion-card>
+
+  <ion-card *ngIf="btn2 == 'selected'" class="details"> 
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Member id</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Virtual_id}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Profile for</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Profile_for}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Gender</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Gender}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>DOB</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.DOB | date : 'dd-MM-yyyy'}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Age</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.age}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Height</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Height}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Skin tone</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Skin}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Body tone</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Body}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Mangalik</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Manglik}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Caste</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Caste}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Gotra</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.MTongue}}"></ion-input></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Hobbies</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.hobby_converted}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Mother subcast</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.SubCaste}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Martial Status</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Marrital}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Physical disability</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Disability}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Drink</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Drink}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>City</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{cityname}}"></ion-input></ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+  <ion-card *ngIf="btn3 == 'selected'" class="details"> 
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Educational Level</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Elevel}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Education Field</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Efield}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Occupation</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Work}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Occupation details</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.WorkAs}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Income</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Income}}"></ion-input></ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="btn4 == 'selected'" class="details"> 
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Address</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Address}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Father name</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Father}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Father occupation</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Fstatus}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Mother occupation</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Mstatus}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>No of brother</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Brother}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>No of sister</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.Sister}}"></ion-input></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
+      <ion-col size="4"><p><span>Father Contact</span></p></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly value="{{myProfile?.FatherContact}}"></ion-input></ion-col>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+</ion-content>

@@ -1,0 +1,35 @@
+.top-slider {
+    margin-top: 70px;
+    img  {
+        width: 50%;
+    }
+}
+
+.welcome-msg {
+    text-align: center;
+    h2 {
+        color: var(--ion-color-danger);
+        font-weight: 900;
+    }
+    p {
+        margin-top: 5px;
+        color: var(--ion-color-medium);
+        font-size: 14px;
+    }
+}
+
+.bottom-section {
+    padding-top: 50px;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    p {
+        font-size: 11px;
+        // margin-top: 5px;
+        color: var(--ion-color-medium);
+    }
+
+    ion-button {
+        text-transform: none;
+    }
+}
