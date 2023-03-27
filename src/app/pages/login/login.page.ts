@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
   parseData: any;
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
+  public device_type = '';
   isLoggedIn = false;
   users = {
     id: '',
@@ -55,6 +56,14 @@ export class LoginPage implements OnInit {
           console.log("FCM token", token);
           this.fcmToken = token;
         });
+        
+        if (this.platform.is('android')) {
+          this.device_type = 'android';
+        } else if (this.platform.is('ios')) {
+          this.device_type = 'ios';
+        } else {
+          this.device_type = 'chrome';
+        }
         
       });
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -138,6 +147,9 @@ export class LoginPage implements OnInit {
   // }
 
   ngOnInit() {
+    if (localStorage.getItem('Dhakad_Login_Status') == 'true') {
+      this.navCtrl.navigateRoot('/home');
+    }
   }
 
   hideShowPassword() {
@@ -176,8 +188,11 @@ export class LoginPage implements OnInit {
         "password": userData.password,
         "lat": this.geoLatitude,
         "lon": this.geoLongitude,
-        "gcmid": this.fcmToken
+        "gcmid": this.fcmToken,
+        "DeviceId": this.fcmToken,
+        "DeviceType": this.device_type,
       }
+        
       this.utils.presentLoading();
       this.httpService.httpPost(this.httpService.Url.login, data).subscribe((res) => {
         this.utils.dismissLoading();

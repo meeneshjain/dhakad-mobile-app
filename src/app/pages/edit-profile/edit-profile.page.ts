@@ -328,9 +328,9 @@ export class EditProfilePage implements OnInit {
             "State":this.profileForm.value.State,
             "City": this.profileForm.value.City,
             "Elevel": this.profileForm.value.Elevel,
-            "efield": this.profileForm.value.Efield,
-            "work": this.profileForm.value.Work,
-            "workas": this.profileForm.value.WorkAs,
+            "Efield": this.profileForm.value.Efield,
+            "Work": this.profileForm.value.Work,
+            "WorkAs": this.profileForm.value.WorkAs,
             "Income": this.profileForm.value.Income,
             "Father": this.profileForm.value.Father,
             "Fstatus": this.profileForm.value.Fstatus,
@@ -342,7 +342,7 @@ export class EditProfilePage implements OnInit {
             "Pincode" : this.profileForm.value.Pincode,
             "Smoke" : this.profileForm.value.Smoke,
             "Work_Country" : this.profileForm.value.Country,
-            "hobbies" : JSON.stringify(this.profileForm.value.Hobbies),
+            "hobbies" : this.profileForm.value.Hobbies,
             "dob_time" : this.profileForm.value.birthTime
           }
 

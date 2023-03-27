@@ -9,7 +9,7 @@ import { SharedService } from './../../services/shared.service';
 @Component({
 	selector: 'app-matches',
 	templateUrl: './matches.page.html',
-	styleUrls: [ './matches.page.scss' ]
+	styleUrls: ['./matches.page.scss']
 })
 export class MatchesPage implements OnInit {
 	@ViewChild(IonInfiniteScroll, { static: false })
@@ -22,6 +22,7 @@ export class MatchesPage implements OnInit {
 	allProfiles: any = [];
 	myMatches: any = [];
 	nearme: any = [];
+	public current_user_profile:any; 
 	shortlisted: any = [];
 	profileImgPath: string = 'https://dhakadmatrimony.shinebrandseeds.com/';
 	currentPage = 0;
@@ -35,23 +36,23 @@ export class MatchesPage implements OnInit {
 		private ActivatedRouter: ActivatedRoute,
 		private route: Router,
 	) {
-		
-		
 		this.shared_service.PageReloadOption.subscribe((obj) => {
-			if (obj == true){
-				this.currentPage = 0;
-				if (this.btn1 == 'selected'){
-					this.getAllProfiles(false);
-				}
+			if (obj == true) {
 				
+				this.currentPage = 0;
+				if (this.btn1 == 'selected') {
+					// this.getAllProfiles(false);
+					this.getNearbyProfiles(false)
+				}
+
 				if (this.btn2 == 'selected') {
 					this.getNearbyProfiles(false);
 				}
-				
+
 				if (this.btn3 == 'selected') {
 					this.getNearbyProfiles(false);
 				}
-				
+
 				if (this.btn4 == 'selected') {
 					this.getShortlistedProfiles(false);
 				}
@@ -60,12 +61,31 @@ export class MatchesPage implements OnInit {
 	}
 
 	ngOnInit() {
-		this.btn1 = 'selected';
-		this.getAllProfiles(true);
+		
+		let token = localStorage.getItem("Dhakad_Token");
+		let user = localStorage.getItem("Dhakad_Login_UserID");
+		this.httpService.httpGetwithHeader(this.httpService.Url.userProfile + user, token).subscribe((res) => {
+
+			let parseData: any
+			if (this.platform.is('cordova')) {
+				parseData = JSON.parse(res.data);
+			} else {
+				parseData = res;
+			}
+			//this.profileImgPath=this.parseData.imgpath;
+			this.current_user_profile = parseData.profile_data;
+			console.log('current_user_profile ', this.current_user_profile)
+			this.btn1 = 'selected';
+			// this.getAllProfiles(true);
+			this.getNearbyProfiles(true)
+		}, (err) => {
+			console.log("My Profile fetch api error :", err);
+		});
+		
 	}
 
 	select(id) {
-		if(this.infinite!= undefined ) { this.infinite.disabled = false; }
+		if (this.infinite != undefined) { this.infinite.disabled = false; }
 		this.currentPage = 0;
 		if (id == 'all') {
 			this.getAllProfiles(true);
@@ -92,15 +112,15 @@ export class MatchesPage implements OnInit {
 
 	getAllProfiles(with_loader) {
 		if (this.utils.isOnline) {
-      let url = this.httpService.Url.allProfile;
+			let url = this.httpService.Url.allProfile;
 			if (this.currentPage == 0) {
-        		this.allProfiles = [];
-				if (with_loader){
+				this.allProfiles = [];
+				if (with_loader) {
 					this.utils.presentLoading();
 				}
-			}else{
-        url = this.httpService.Url.allProfile + "?page=" + (this.currentPage+1)
-      }
+			} else {
+				url = this.httpService.Url.allProfile + "?page=" + (this.currentPage + 1)
+			}
 			let token = localStorage.getItem('Dhakad_Token');
 			this.httpService.httpGetwithHeader(url, token).subscribe(
 				(res) => {
@@ -111,21 +131,21 @@ export class MatchesPage implements OnInit {
 							this.utils.dismissLoading();
 						}
 					}
-          this.currentPage++;
+					this.currentPage++;
 					if (this.platform.is('cordova')) {
 						this.parseData = JSON.parse(res.data);
 					} else {
 						this.parseData = res;
 					}
-          
-          this.parseData.profile_data.data.forEach(element => {
-				 element.loadImage=false;
-            this.allProfiles.push(element);
-          });
-					
-          if ( this.parseData.profile_data.last_page == this.parseData.profile_data.current_page) {
-            this.infinite.disabled = true;
-          }
+
+					this.parseData.profile_data.data.forEach(element => {
+						element.loadImage = false;
+						this.allProfiles.push(element);
+					});
+
+					if (this.parseData.profile_data.last_page == this.parseData.profile_data.current_page) {
+						this.infinite.disabled = true;
+					}
 				},
 				(err) => {
 					if (with_loader) {
@@ -143,17 +163,17 @@ export class MatchesPage implements OnInit {
 		if (this.utils.isOnline) {
 			let url = this.httpService.Url.shortlistedProfiles;
 			if (this.currentPage == 0) {
-        this.shortlisted = [];
-				if (with_loader){
+				this.shortlisted = [];
+				if (with_loader) {
 					this.utils.presentLoading();
 				}
-			}else{
-        url = this.httpService.Url.shortlistedProfiles + "?page=" + (this.currentPage+1)
-      }
+			} else {
+				url = this.httpService.Url.shortlistedProfiles + "?page=" + (this.currentPage + 1)
+			}
 			let token = localStorage.getItem('Dhakad_Token');
 			this.httpService.httpGetwithHeader(url, token).subscribe(
 				(res) => {
-          this.infinite.complete();
+					this.infinite.complete();
 					if (this.currentPage == 0) {
 						if (with_loader) {
 							this.utils.dismissLoading();
@@ -168,13 +188,13 @@ export class MatchesPage implements OnInit {
 					}
 
 					if (this.parseData.result != 0) {
-            if (this.parseData.current_page == this.parseData.last_page) {
-              this.infinite.disabled = true;
-            }
-            this.parseData.data.forEach(element => {
-					element.loadImage = false;
-              this.shortlisted.push(element);
-            });
+						if (this.parseData.current_page == this.parseData.last_page) {
+							this.infinite.disabled = true;
+						}
+						this.parseData.data.forEach(element => {
+							element.loadImage = false;
+							this.shortlisted.push(element);
+						});
 						// this.shortlisted = this.parseData.data;
 					}
 				},
@@ -261,17 +281,17 @@ export class MatchesPage implements OnInit {
 			let token = localStorage.getItem('Dhakad_Token');
 			let url = this.httpService.Url.preferredMatch;
 			if (this.currentPage == 0) {
-        this.nearme = [];
-        this.myMatches = [];
-				if (with_loader){
+				this.nearme = [];
+				this.myMatches = [];
+				if (with_loader) {
 					this.utils.presentLoading();
 				}
-			}else{
-        url = this.httpService.Url.preferredMatch + "?page=" + (this.currentPage+1)
-      }      
+			} else {
+				url = this.httpService.Url.preferredMatch + "?page=" + (this.currentPage + 1)
+			}
 			this.httpService.httpGetwithHeader(url, token).subscribe(
 				(res) => {
-          this.infinite.complete();
+					this.infinite.complete();
 					if (this.currentPage == 0) {
 						if (with_loader) {
 							this.utils.dismissLoading();
@@ -282,34 +302,35 @@ export class MatchesPage implements OnInit {
 					} else {
 						this.parseData = res;
 					}
-          this.currentPage++;
+					this.currentPage++;
 					if (this.parseData.result != 0) {
-            if (this.btn2 == 'selected') {
-              if (this.parseData.latestmatch.current_page == this.parseData.latestmatch.last_page) {
-                this.infinite.disabled = true;
-              }
-              this.parseData.latestmatch.data.forEach(element => {
-					  element.loadImage = false;
-                this.myMatches.push(element);
-              });
-            }
+						if (this.btn1 == 'selected') {
+							if (this.parseData.latestmatch.current_page == this.parseData.latestmatch.last_page) {
+								this.infinite.disabled = true;
+							}
+							this.parseData.latestmatch.data.forEach(element => {
+								element.loadImage = false;
+								this.allProfiles.push(element);
+							});
+						}
+						if (this.btn2 == 'selected') {
+							if (this.parseData.mymatches.current_page == this.parseData.mymatches.last_page) {
+								this.infinite.disabled = true;
+							}
+							this.parseData.mymatches.data.forEach(element => {
+								element.loadImage = false;
+								this.myMatches.push(element);
+							});
+						}
 
-            if (this.btn3 == 'selected') {
-              // if (this.parseData.nearme.current_page == this.parseData.nearme.last_page) {
-                this.infinite.disabled = true;
-              // }
-              // this.parseData.nearby.forEach(element => {
-					// element.loadImage = false;
-              //   this.nearme.push(element);
-				  
-              // });
-              this.nearme = this.parseData.nearby;
-            }
-						// this.nearme = this.parseData.nearby;
-						// this.myMatches = this.parseData.latestmatch.data;
-					}else{
-            this.infinite.disabled = true;
-          }
+						if (this.btn3 == 'selected') {
+							this.infinite.disabled = true;
+							this.nearme = this.parseData.nearby.data;
+						}
+
+					} else {
+						this.infinite.disabled = true;
+					}
 				},
 				(err) => {
 					if (with_loader) {
@@ -328,39 +349,50 @@ export class MatchesPage implements OnInit {
 		console.log('virtual ID', virtualID);
 		localStorage.setItem('Dhakad_Partner_Virtual_id', virtualID);
 		localStorage.setItem('gcmTocken', DeviceGcm);
-		this.navCtrl.navigateForward('/chat');
+		
+		if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0){
+			this.navCtrl.navigateForward('/chat');
+		} else {
+			this.navCtrl.navigateForward('/offers');
+		}
 	}
 	goToCall(contact: any) {
-		console.log('contact number', contact);
-		var regrex = '/^[6-9]d{9}$/';
-		console.log('Valid contact number', regrex.match(contact));
-		if (contact != null && contact.length == 10) {
-			this.callNumber
-				.callNumber(contact, true)
-				.then((res) => console.log('Launched dialer!', res))
-				.catch((err) => console.log('Error launching dialer', err));
-		} else this.utils.presentAlert('Incorrect Mobile Number!!');
+		if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+			console.log('contact number', contact);
+			var regrex = '/^[6-9]d{9}$/';
+			console.log('Valid contact number', regrex.match(contact));
+			if (contact != null && contact.length == 10) {
+				this.callNumber
+					.callNumber(contact, true)
+					.then((res) => console.log('Launched dialer!', res))
+					.catch((err) => console.log('Error launching dialer', err));
+			} else this.utils.presentAlert('Incorrect Mobile Number!!');
+			
+		} else {
+			this.navCtrl.navigateForward('/offers');
+		}
 	}
 
 	callApi() {
-	if (this.btn1 == 'selected') {
-		this.getAllProfiles(true);
-	} else if (this.btn2 == 'selected') {
-      this.getNearbyProfiles(true);
-    }else if (this.btn3 == 'selected') {
-      this.getNearbyProfiles(true);
-    }else if (this.btn4 == 'selected') {
-      this.getShortlistedProfiles(true);
-    }
+		if (this.btn1 == 'selected') {
+			//this.getAllProfiles(true);
+			this.getNearbyProfiles(true);
+		} else if (this.btn2 == 'selected') {
+			this.getNearbyProfiles(true);
+		} else if (this.btn3 == 'selected') {
+			this.getNearbyProfiles(true);
+		} else if (this.btn4 == 'selected') {
+			this.getShortlistedProfiles(true);
+		}
 
-    
+
 	}
-	
+
 	navigate_back() {
 		this.route.navigateByUrl('/home');
 	}
-	
-	error_image(img){
+
+	error_image(img) {
 		img.src = './assets/images/photo1.png'
 	}
 }

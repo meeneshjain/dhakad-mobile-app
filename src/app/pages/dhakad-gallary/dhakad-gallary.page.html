@@ -13,7 +13,7 @@
     <ion-row class="image-container">
       <ion-col size="6" *ngFor="let image of userImg;let idx = index" > 
         <ion-img class="user-profile-img" [src]="image.full" alt="" (ionError)="error_image(img)" #img
-              (ionImgDidLoad)="image.loadImage= true"> </ion-img>
+              (ionImgDidLoad)="image.loadImage= true" (click)="goToProfilePics(image.full)"> </ion-img>
         <img src="assets/images/loading.gif" alt="" [hidden]="image?.loadImage == true" loading="lazy" />
       </ion-col>
     

@@ -19,12 +19,14 @@
       <div class="profile">
         
         <h4>{{profile?.PName}}</h4>
-        <p>{{profile?.age}} Year, {{profile?.Height}}</p>
+        <p>{{profile?.age}} Year, {{profile?.city_name}}</p>
         <ion-button color="primary" expand="full" class="edit" shape="round" (click)="open('edit-profile')">Edit Profile</ion-button>
-        <ng-container *ngIf="profile?.Purchase_plan!= undefined">
+        <ng-container *ngIf="profile?.Purchase_plan== undefined || profile?.Purchase_plan== 0">
           
-          <ion-button color="warning" expand="full"  shape="round" (click)="goPremium()" *ngIf="profile?.Purchase_plan== null || profile?.Purchase_plan== ''">Go Premium</ion-button>
+          <ion-button color="warning" expand="full"  shape="round" (click)="goPremium()" *ngIf="profile?.Purchase_plan== null || profile?.Purchase_plan== '' || profile?.Purchase_plan== 0">Go Premium</ion-button>
         </ng-container>
+        <ion-button color="success" expand="full" shape="round"
+          *ngIf="profile?.Purchase_plan!= null && profile?.Purchase_plan!= 0">Membership Activated</ion-button>
       </div>
 
       
@@ -44,9 +46,9 @@
         <ion-item (click)="open('offers')"><img src="assets/icon/menu/offer.png"/>Offers</ion-item>
         <!-- <ion-item><img src="assets/icon/menu/feedback.png"/>Feedback</ion-item> -->
         <ion-item (click)="open('notifications')"><img src="assets/notifications-outline.svg" style="--color_fill: #eb445a;"/>Notifications</ion-item>
-       
+      <ion-item (click)="open('settings')"><img src="assets/icon/menu/settings.png" />Settings</ion-item>
         <ion-item (click)="open('about-us')"><img src="assets/icon/menu/home.png"/>About Us</ion-item>
-        <ion-item (click)="open('setting')"><img src="assets/icon/menu/setting.png"/>Setting</ion-item>
+        <!-- <ion-item (click)="open('setting')"><img src="assets/icon/menu/setting.png"/>Setting</ion-item> -->
         <ion-item (click)="logout()"><img src="assets/icon/menu/logout.png"/>Log out</ion-item>
       </ion-list>
 

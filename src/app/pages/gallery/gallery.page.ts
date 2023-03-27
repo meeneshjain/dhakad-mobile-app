@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { NavController, Platform ,ActionSheetController} from '@ionic/angular';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
@@ -22,7 +23,7 @@ export class GalleryPage implements OnInit {
   currentSelected: Number = null;
   profileImgPath: string = "https://dhakadmatrimony.shinebrandseeds.com/";
   constructor(private navCtrl: NavController, 
-    private httpService: HttpService, private utils: UtilsService, private platform: Platform,private camera: Camera, private actionSheetController: ActionSheetController) { }//,private imagePicker: ImagePicker
+    private httpService: HttpService, private utils: UtilsService, private platform: Platform, private camera: Camera, private actionSheetController: ActionSheetController, private router: Router) { }//,private imagePicker: ImagePicker
 
   ngOnInit() {
     this.getMyGallery()
@@ -52,6 +53,7 @@ export class GalleryPage implements OnInit {
         // this.gallery.forEach(i => this.userImg.push(this.profileImgPath+i.full));
         this.userImg = this.gallery.filter(obj => {
           obj.loadImage = false;
+          obj.imagepath = obj.full;
           obj.full = this.profileImgPath + obj.full
           return obj
         })
@@ -411,4 +413,15 @@ if(this.utils.isOnline()) {
   }
  
 }
+
+  goToProfilePics(image) {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        gallaryPics: image
+      }
+    };
+    this.router.navigate(['img-gallary'], navigationExtras);
+
+  }
+
 }

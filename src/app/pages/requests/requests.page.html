@@ -49,6 +49,8 @@
           <div class="details">
             <h4>{{profile?.PName}}</h4>
             <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+            <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                ')[0]}} </span></p>
           </div>
 
           <div class="actions">
@@ -91,6 +93,8 @@
           <div class="details">
             <h4>{{profile?.PName}}</h4>
             <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+            <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                ')[0]}} </span></p>
           </div>
 
           <div class="actions">
@@ -142,6 +146,8 @@
           <div class="details">
             <h4>{{profile?.PName}}</h4>
             <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+            <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                ')[0]}} </span></p>
           </div>
 
           <div class="actions">

@@ -3,8 +3,8 @@ import { NavController, Platform } from '@ionic/angular';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
 import { SharedService } from './../../services/shared.service';
-declare module '*';
-declare var RazorpayCheckout:any;
+/* declare module '*'; */
+declare var RazorpayCheckout: any;
 
 @Component({
   selector: 'app-offers',
@@ -17,7 +17,7 @@ export class OffersPage implements OnInit {
   offers: any;
   paymentAmount :Number = 100;
   currency: string = 'INR';
-  razor_key:string = 'rzp_test_zOfiFYVU96xs0j';
+  razor_key: string = 'rzp_test_VBbqGcdarCZORS';
   paymentID : any;
   paymentStatus : string = '';
   planID : Number ;

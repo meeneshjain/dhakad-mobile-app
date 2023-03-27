@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="danger">
     <ion-buttons slot="start">
-      <ion-back-button   (click)="navigate_back()"></ion-back-button>
+      <ion-back-button style="display: block;" (click)="navigate_back()"></ion-back-button>
     </ion-buttons>
     <ion-title>Matches</ion-title>
   </ion-toolbar>
@@ -11,7 +11,7 @@
 
   <ion-grid class="top-menu">
     <ion-row>
-      <ion-col size="3"><ion-button  expand="block" [ngClass]="btn1" (click)="select('all')">All Matches</ion-button></ion-col>
+      <ion-col size="3"><ion-button  expand="block" [ngClass]="btn1" (click)="select('all')">New Matches</ion-button></ion-col>
       <ion-col size="3"><ion-button  expand="block" [ngClass]="btn2" (click)="select('my')">My Matches</ion-button></ion-col>
       <ion-col size="3"><ion-button  expand="block" [ngClass]="btn3" (click)="select('near')">Near Me</ion-button></ion-col>
       <ion-col size="3"><ion-button  expand="block" [ngClass]="btn4" (click)="select('shortlisted')">Shortlisted</ion-button></ion-col>
@@ -43,6 +43,7 @@
           <div class="details">
               <h4>{{profile?.PName}}</h4>
               <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+              <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile.reg_date.split(' ')[0]}} </span></p>
           </div>
 
           <div class="actions">
@@ -82,6 +83,7 @@
           <div class="details">
               <h4>{{profile?.PName}}</h4>
               <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+              <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split(' ')[0]}} </span></p>
           </div>
 
           <div class="actions">
@@ -121,6 +123,7 @@
           <div class="details">
               <h4>{{profile?.PName}}</h4>
               <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+              <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split(' ')[0]}} </span></p>
           </div>
 
           <div class="actions">
@@ -160,6 +163,8 @@
           <div class="details">
               <h4>{{profile?.PName}}</h4>
               <p>{{profile?.age}} Year, {{profile?.Height}}cm Height <br>Address : {{profile?.Address}} </p>
+              <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                  ')[0]}} </span></p>
           </div>
 
           <div class="actions">

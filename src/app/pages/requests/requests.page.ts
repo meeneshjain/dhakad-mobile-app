@@ -20,11 +20,30 @@ export class RequestsPage implements OnInit {
   pendingRequest : any = [];
   sentRequest : any = [];
   subscription: Subscription;
+  public current_user_profile: any; 
   constructor(private navCtrl: NavController, 
     private httpService: HttpService, private utils: UtilsService,private  callNumber:  CallNumber, private platform: Platform) { }
   profileImgPath: string = 'https://dhakadmatrimony.shinebrandseeds.com/';
 
   ngOnInit() {
+    
+    let token = localStorage.getItem("Dhakad_Token");
+    let user = localStorage.getItem("Dhakad_Login_UserID");
+    this.httpService.httpGetwithHeader(this.httpService.Url.userProfile + user, token).subscribe((res) => {
+
+      let parseData: any
+      if (this.platform.is('cordova')) {
+        parseData = JSON.parse(res.data);
+      } else {
+        parseData = res;
+      }
+      //this.profileImgPath=this.parseData.imgpath;
+      this.current_user_profile = parseData.profile_data;
+      console.log('current_user_profile ', this.current_user_profile)
+      
+    }, (err) => {
+      console.log("My Profile fetch api error :", err);
+    });
 
     this.requestRecieved();
     //this.requestSent();
@@ -189,21 +208,31 @@ export class RequestsPage implements OnInit {
   }
 
   goToChat(virtualID,DeviceGcm){
-    console.log("virtual ID",virtualID);
-    localStorage.setItem("Dhakad_Partner_Virtual_id", virtualID);
-    localStorage.setItem('gcmTocken',DeviceGcm);
-    this.navCtrl.navigateForward('/chat');
+    if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+      console.log("virtual ID",virtualID);
+      localStorage.setItem("Dhakad_Partner_Virtual_id", virtualID);
+      localStorage.setItem('gcmTocken',DeviceGcm);
+      this.navCtrl.navigateForward('/chat');
+    } else {
+      this.navCtrl.navigateForward('/offers');
+
+    }
   }
   goToCall(contact : any){
-    console.log("contact number",contact);
-    var regrex = '/^[6-9]\d{9}$/';
-    console.log("Valid contact number",regrex.match(contact));
-    if(contact != null && contact.length == 10){
-      this.callNumber.callNumber(contact, true)
-  .then(res => console.log('Launched dialer!', res))
-  .catch(err => console.log('Error launching dialer', err));
-    }else
-    this.utils.presentAlert("Incorrect Mobile Number!!");
+    if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+      console.log("contact number",contact);
+      var regrex = '/^[6-9]\d{9}$/';
+      console.log("Valid contact number",regrex.match(contact));
+      if(contact != null && contact.length == 10){
+        this.callNumber.callNumber(contact, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+      }else
+      this.utils.presentAlert("Incorrect Mobile Number!!");
+    } else {
+      this.navCtrl.navigateForward('/offers');
+
+    }
   }
   
   callApi() {

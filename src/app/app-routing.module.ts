@@ -146,7 +146,12 @@ const routes: Routes = [
   {
     path: 'our-success-story',
     loadChildren: () => import('./pages/our-success-story/our-success-story.module').then( m => m.OurSuccessStoryPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   }
+
 
 
 

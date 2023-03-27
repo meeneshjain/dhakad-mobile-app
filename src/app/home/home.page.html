@@ -19,7 +19,7 @@
    
     <ion-grid class="profiles">
       <ion-row>
-        <ion-col size="6" class="card-bg" *ngFor="let profile of profiles | slice:0:4;let i = index">
+        <ion-col size="6" class="card-bg" *ngFor="let profile of profiles; let i = index">
         
           <ion-card (click)="viewProfile(profile?.ProfileId)">
            <img *ngIf="profile?.IsPurchase == 1" class="custom-paid" src="assets/icon/ic_premium.png"/>

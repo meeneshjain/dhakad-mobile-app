@@ -3,12 +3,20 @@
 <ion-content>
   
   <ion-back-button defaultHref="/home" class="custom-btn"></ion-back-button>
-
+  <br><br> <br>
   <ion-slides  pager="true" class="custom-slide">
-    <ion-slide *ngFor="let pics of gallary" >
-      <div class="swiper-zoom-container">
-      <img [src]="pics"> 
-      </div>
-    </ion-slide>
+    <ng-container *ngIf="gallary.length > 0">
+      
+      <ion-slide *ngFor="let pics of gallary" >
+        <div class="swiper-zoom-container">
+          <img [src]="pics"> 
+        </div>
+      </ion-slide>
+      <ng-container *ngIf="gallary != '' ">
+          <div class="swiper-zoom-container">
+            <img [src]="gallary">
+          </div>
+      </ng-container>
+    </ng-container>
   </ion-slides>
 </ion-content>

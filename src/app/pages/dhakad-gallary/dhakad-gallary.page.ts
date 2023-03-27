@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
 import { NavController, Platform,IonRouterOutlet} from '@ionic/angular';
@@ -13,7 +14,7 @@ export class DhakadGallaryPage implements OnInit {
   gallery : any;
   userImg: any = [];
   profileImgPath: string = "https://dhakadmatrimony.shinebrandseeds.com/";
-  constructor(public httpService: HttpService, private utils: UtilsService,private platform: Platform) { }
+  constructor(public httpService: HttpService, private utils: UtilsService, private platform: Platform,  private router: Router) { }
 
   ngOnInit() {
     this.getGallaryData();
@@ -52,6 +53,18 @@ export class DhakadGallaryPage implements OnInit {
   
   error_image(img) {
     img.src = './assets/images/photo1.png'
+  }
+  
+  goToProfilePics(image) {
+    let imagearr = [];
+    imagearr.push(image);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        gallaryPics: JSON.stringify(imagearr)
+      }
+    };
+    this.router.navigate(['img-gallary'], navigationExtras);
+
   }
   
   

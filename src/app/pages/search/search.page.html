@@ -44,6 +44,8 @@
               <ion-col>
                  <p class="custom-name">{{profile?.PName}}</p>
                   <p><span>{{profile?.age}} ,</span> {{profile?.Address}}</p>
+                  <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                      ')[0]}} </span></p>
                </ion-col>
             </ion-row>
             </ion-card>
@@ -74,6 +76,9 @@
               <ion-col>
                  <p class="custom-name">{{profile?.PName}}</p>
                   <p><span>{{profile?.age}} ,</span> {{profile?.Address}}</p>
+                  
+                  <p>Registration Date : <span *ngIf="profile.reg_date!= '' && profile.reg_date!= undefined"> {{profile?.reg_date.split('
+                      ')[0]}} </span></p>
                </ion-col>
             </ion-row>
             </ion-card>

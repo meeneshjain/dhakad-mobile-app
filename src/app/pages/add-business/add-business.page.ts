@@ -122,9 +122,9 @@ export class AddBusinessPage implements OnInit {
        console.log("Please enter all details!!");
        return;
      }
-     if(this.userImg === "assets/images/photo2.png") {
+ /*     if(this.userImg === "assets/images/photo2.png") {
       this.utils.presentAlert("Please Select Profile Image")
-    }else{
+    }else { */
       console.log("form validated");
       var data ={
         "business_id" : this.businessForm.controls.Business.value,  
@@ -182,7 +182,7 @@ export class AddBusinessPage implements OnInit {
       } else {
         this.utils.presentAlert(this.utils.appConfig.internetMsg);
       }
-    }
+   /*  } */
       
 
    

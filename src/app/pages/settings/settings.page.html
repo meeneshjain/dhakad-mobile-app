@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <div class="text-center m-auto save">
+      <br>
+      <br>
+      <ion-button color="danger" (click)="open_url('contact')">Contact Us</ion-button>
+      <br>
+      <br>
+      <ion-button color="danger" (click)="rate_us()">Rate Us</ion-button>
+      <br>
+      <br>
+      
+      <ion-button color="danger" (click)="open_url('share')">Share App</ion-button>
+    </div>
+  </ion-row>
+</ion-content>

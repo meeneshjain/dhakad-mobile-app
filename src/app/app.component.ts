@@ -16,6 +16,7 @@ import { SharedService } from './services/shared.service';
 export class AppComponent {
 
   profile: any;
+  public current_user_profile: any; 
   profileImg: string= null;
   public is_logged_in = false;
   @ViewChild(IonRouterOutlet) routerOutlet: IonRouterOutlet;
@@ -36,6 +37,7 @@ export class AppComponent {
     this.httpService.subscribe('profile:update', (data: any) => {
       console.log('Welcome', data.name, 'at', data.profileData);
       this.profile = data.profileData;
+      console.log('this.profile ', this.profile )
      // this.profileImg = "http://dhakadmatromonial.graspcorn.in/assets/profile/"+data.profileData.ProfileImg;
      this.profileImg = "https://dhakadmatrimony.shinebrandseeds.com/"+data.profileData.ProfileImg;
      console.log("profile-image", this.profileImg)
@@ -58,7 +60,23 @@ export class AppComponent {
   
     this.shared_service.hidePremiumOption.subscribe((obj) => {
       if (obj == true) {
-        this.profile.Purchase_plan = 2;
+      
+        let token = localStorage.getItem("Dhakad_Token");
+        this.httpService.httpGetwithHeader(this.httpService.Url.myProfile, token).subscribe((res) => {
+          
+          let parseData:any
+          if (this.platform.is('cordova')) {
+            parseData = JSON.parse(res.data);
+          } else {
+            parseData = res;
+          }
+          //this.profileImgPath=this.parseData.imgpath;
+          this.profile = parseData.profile_data;
+
+        }, (err) => {
+          console.log("My Profile fetch api error :", err);
+        });
+      
       }
     });
     
@@ -78,7 +96,7 @@ export class AppComponent {
 
       this.splashScreen.hide();
       if(localStorage.getItem('Dhakad_Login_Status') == 'true') {
-        this.nav.navigateRoot('/home');
+       //  this.nav.navigateRoot('/home');
       } else {
         this.nav.navigateRoot('/welcome');
       }

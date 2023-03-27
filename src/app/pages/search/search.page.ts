@@ -34,6 +34,10 @@ export class SearchPage implements OnInit {
 
     }
   }
+  
+  error_image(img) {
+    img.src = './assets/images/photo1.png'
+  }
 
   onSearchByID(event: any, id_value) {
     console.log(event);

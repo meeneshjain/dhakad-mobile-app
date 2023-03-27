@@ -7,6 +7,7 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/n
 import { DomSanitizer } from '@angular/platform-browser';
 import { ChatService } from './../../services/chat.service';
 import { VideoCallService } from './../../services/video-call.service';
+import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -24,12 +25,13 @@ export class SignUpPage implements OnInit {
   maritial_status:any;
   userImg ="assets/images/photo2.png";
   imgUpload : string;
-   
- 
+  public device_type = '';
+  fcmToken: any;
+
 
   constructor(private navCtrl: NavController, private httpService: HttpService, private utils: UtilsService,
     private formBuilder: FormBuilder, private platform: Platform, private camera: Camera, private actionSheetController: ActionSheetController, public domSanitizer: DomSanitizer, private chatService: ChatService, private videoService: VideoCallService, private ActivatedRouter: ActivatedRoute,
-    private route: Router) { 
+    private route: Router, private fcm: FCM,) { 
         var newDate = new Date();
         // var year = (newDate.getFullYear() - 18);
         // var month = "0"+(newDate.getMonth() + 1);
@@ -52,6 +54,24 @@ export class SignUpPage implements OnInit {
         pwd: ['', [Validators.required, Validators.minLength(6)]]
       });
       
+    this.platform.ready()
+      .then(() => {
+        // get FCM token
+        this.fcm.getToken().then(token => {
+          console.log("FCM token", token);
+          this.fcmToken = token;
+        });
+
+        if (this.platform.is('android')) {
+          this.device_type = 'android';
+        } else if (this.platform.is('ios')) {
+          this.device_type = 'ios';
+        } else {
+          this.device_type = 'chrome';
+        }
+
+      });
+      
     }
 
     formatDate(date) {
@@ -64,6 +84,7 @@ export class SignUpPage implements OnInit {
       return [year, month, day].join('-');
     }
   ngOnInit() {
+    
     //this.getReligion();
     //this.getCaste();
     this.getDropDownData();
@@ -187,8 +208,9 @@ export class SignUpPage implements OnInit {
          "religion":this.registerForm.controls.religion.value,
          "Caste":this.registerForm.controls.subcaste.value,
          "subCaste":this.registerForm.controls.subcaste1.value,
-         "martstatus" : this.registerForm.controls.martstatus.value
-      
+         "martstatus" : this.registerForm.controls.martstatus.value,
+       "DeviceId": this.fcmToken,
+        "DeviceType": this.device_type,
       }
       this.registerApi(data);
     }

@@ -23,6 +23,9 @@ export class WelcomePage implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('Dhakad_Login_Status') == 'true') {
+      this.nav.navigateRoot('/home');
+    }
   }
 
   login() {

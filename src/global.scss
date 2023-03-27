@@ -70,3 +70,7 @@ ion-select::part(text) {
     margin-right: auto;
     left: 45px;
 }
+
+.menu-content-open{
+      pointer-events: all !important;
+}

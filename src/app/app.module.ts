@@ -30,6 +30,8 @@ import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { DatePipe } from '@angular/common';
 
+import { AppRate } from '@ionic-native/app-rate/ngx'; 
+
 @NgModule({
 	declarations: [ AppComponent ],
 	entryComponents: [],
@@ -46,6 +48,7 @@ import { DatePipe } from '@angular/common';
 	],
 	providers: [
 		StatusBar,
+		AppRate,
 		SplashScreen,
 		Network,
 		HTTP,
@@ -57,7 +60,7 @@ import { DatePipe } from '@angular/common';
 		SocialSharing,
 		FCM,
 		CallNumber,
-		DatePipe
+		DatePipe,
 	],
 	bootstrap: [ AppComponent ]
 })
