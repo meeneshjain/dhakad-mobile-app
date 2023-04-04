@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-profile-visitors',
@@ -12,12 +13,32 @@ export class ProfileVisitorsPage implements OnInit {
 
   parseData : any;
   visitors : any = [];
+  public current_user_profile: any; 
   profileImgPath: string = 'https://dhakadmatrimony.shinebrandseeds.com/';
   constructor(private navCtrl: NavController, 
-    private httpService: HttpService, private utils: UtilsService, private platform: Platform) { }
+    private httpService: HttpService, private utils: UtilsService, private platform: Platform,
+    private callNumber: CallNumber,
+    ) { }
 
   ngOnInit() {
-    this.getProfileVisitors();
+    let token = localStorage.getItem("Dhakad_Token");
+    let user = localStorage.getItem("Dhakad_Login_UserID");
+    this.httpService.httpGetwithHeader(this.httpService.Url.userProfile + user, token).subscribe((res) => {
+
+      let parseData: any
+      if (this.platform.is('cordova')) {
+        parseData = JSON.parse(res.data);
+      } else {
+        parseData = res;
+      }
+      //this.profileImgPath=this.parseData.imgpath;
+      this.current_user_profile = parseData.profile_data;
+      console.log('current_user_profile ', this.current_user_profile)
+      this.getProfileVisitors();
+    }, (err) => {
+      console.log("My Profile fetch api error :", err);
+    });
+    
   }
   
   error_image(img) {
@@ -112,5 +133,34 @@ export class ProfileVisitorsPage implements OnInit {
   }
 
   
+
+  goToChat(virtualID, DeviceGcm) {
+    console.log('virtual ID', virtualID);
+    localStorage.setItem('Dhakad_Partner_Virtual_id', virtualID);
+    localStorage.setItem('gcmTocken', DeviceGcm);
+
+    if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
+      this.navCtrl.navigateForward('/chat');
+    } else {
+      this.navCtrl.navigateForward('/offers');
+    }
+  }
+  goToCall(contact: any) {
+    if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
+      console.log('contact number', contact);
+      var regrex = '/^[6-9]d{9}$/';
+      console.log('Valid contact number', regrex.match(contact));
+      if (contact != null && contact.length == 10) {
+        this.callNumber
+          .callNumber(contact, true)
+          .then((res) => console.log('Launched dialer!', res))
+          .catch((err) => console.log('Error launching dialer', err));
+      } else this.utils.presentAlert('Incorrect Mobile Number!!');
+
+    } else {
+      this.navCtrl.navigateForward('/offers');
+    }
+  }
+
 
 }

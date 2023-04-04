@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -14,8 +15,8 @@ export class OtpPage implements OnInit {
   token: string;
   otp: number;
   otpLoginFlag: boolean;
-  constructor(private navCtrl: NavController, private httpService: HttpService, private utils: UtilsService,
-     private platform: Platform) {
+  constructor(private navCtrl: NavController, private httpService: HttpService, private utils: UtilsService, private ActivatedRouter: ActivatedRoute,
+    private route: Router, private platform: Platform) {
       this.token = this.httpService.getLoginRegisterToken();
       console.log("login/register token", this.token);
       this.otpLoginFlag = this.httpService.getOtpFlag();
@@ -98,5 +99,11 @@ export class OtpPage implements OnInit {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
     }
   }
+  
+
+  navigate_back() {
+    this.route.navigateByUrl('/login');
+  }
+
 
 }

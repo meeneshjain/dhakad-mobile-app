@@ -350,14 +350,14 @@ export class MatchesPage implements OnInit {
 		localStorage.setItem('Dhakad_Partner_Virtual_id', virtualID);
 		localStorage.setItem('gcmTocken', DeviceGcm);
 		
-		if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0){
+		if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0){
 			this.navCtrl.navigateForward('/chat');
 		} else {
 			this.navCtrl.navigateForward('/offers');
 		}
 	}
 	goToCall(contact: any) {
-		if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+		if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
 			console.log('contact number', contact);
 			var regrex = '/^[6-9]d{9}$/';
 			console.log('Valid contact number', regrex.match(contact));

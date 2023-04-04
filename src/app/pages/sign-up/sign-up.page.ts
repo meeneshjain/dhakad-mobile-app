@@ -173,7 +173,7 @@ export class SignUpPage implements OnInit {
 
   register() {
     console.log("Register", this.registerForm);
-    if(this.userImg === "assets/images/photo2.png") {
+     if(this.userImg === "assets/images/photo2.png") {
       this.utils.presentAlert("Please Select Profile Image")
     }else if(this.registerForm.controls.fullname.status === "INVALID") {
       this.utils.presentAlert("Please enter a valid name")
@@ -196,24 +196,26 @@ export class SignUpPage implements OnInit {
     } else if(this.registerForm.controls.pwd.status === "INVALID") {
       this.utils.presentAlert("Please enter a valid password. Password should be min 6 characters")
     } else {
-      console.log("Img uploaded"+  this.imgUpload);
+      console.log("Img uploaded"+  this.imgUpload); 
+    var dateobj = new Date(this.registerForm.value.dob);
+    var dateformatted = dateobj.getFullYear() + '-' + ("0" + (dateobj.getMonth() + 1)).slice(-2) + '-' + ("0" + dateobj.getDate()).slice(-2)
       var data ={
         "userimg" :  this.imgUpload,
-        "fullname" : this.registerForm.controls.fullname.value,
-        "email": this.registerForm.controls.email.value,
-        "pwd": this.registerForm.controls.pwd.value,
-         "contact" : this.registerForm.controls.contact.value,
-         "gender":this.registerForm.controls.gender.value,
-         "dob":this.registerForm.controls.dob.value ,
-         "religion":this.registerForm.controls.religion.value,
-         "Caste":this.registerForm.controls.subcaste.value,
-         "subCaste":this.registerForm.controls.subcaste1.value,
-         "martstatus" : this.registerForm.controls.martstatus.value,
+        "fullname" : this.registerForm.value.fullname,
+        "email": this.registerForm.value.email,
+        "pwd": this.registerForm.value.pwd,
+         "contact" : this.registerForm.value.contact,
+         "gender":this.registerForm.value.gender,
+         "dob": dateformatted,
+         "religion":this.registerForm.value.religion,
+         "Caste":this.registerForm.value.subcaste,
+         "subCaste":this.registerForm.value.subcaste1,
+         "martstatus" : this.registerForm.value.martstatus,
        "DeviceId": this.fcmToken,
         "DeviceType": this.device_type,
       }
       this.registerApi(data);
-    }
+     } 
   }
 
   registerApi(data) {

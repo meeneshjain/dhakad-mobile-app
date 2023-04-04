@@ -182,7 +182,6 @@ export class LoginPage implements OnInit {
   loginApi(userData) {
 
     if (this.utils.isOnline()) {
-      console.log("login details :: ", userData);
       let data = {
         "email": userData.username,
         "password": userData.password,
@@ -192,6 +191,8 @@ export class LoginPage implements OnInit {
         "DeviceId": this.fcmToken,
         "DeviceType": this.device_type,
       }
+      
+      console.log('data ', data )
         
       this.utils.presentLoading();
       this.httpService.httpPost(this.httpService.Url.login, data).subscribe((res) => {

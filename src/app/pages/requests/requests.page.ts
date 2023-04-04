@@ -208,7 +208,7 @@ export class RequestsPage implements OnInit {
   }
 
   goToChat(virtualID,DeviceGcm){
-    if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+    if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
       console.log("virtual ID",virtualID);
       localStorage.setItem("Dhakad_Partner_Virtual_id", virtualID);
       localStorage.setItem('gcmTocken',DeviceGcm);
@@ -219,7 +219,7 @@ export class RequestsPage implements OnInit {
     }
   }
   goToCall(contact : any){
-    if (this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+    if (this.current_user_profile?.Purchase_plan != null &&  this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
       console.log("contact number",contact);
       var regrex = '/^[6-9]\d{9}$/';
       console.log("Valid contact number",regrex.match(contact));

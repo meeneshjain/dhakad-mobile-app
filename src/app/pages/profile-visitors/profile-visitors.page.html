@@ -33,8 +33,12 @@
             <ion-row>
               <ion-col (click)="sendRequest(profile?.ProfileId)"><img src="assets/icon/request.png" /><p>Send Request</p></ion-col>
               <ion-col (click)="shortlist(profile?.ProfileId)"><img src="assets/icon/heart.png" /><p>Add Wishlist</p></ion-col>
-              <ion-col><img src="assets/icon/call.png" /><p>Call Now</p></ion-col>
-              <ion-col><img src="assets/icon/message.png" /><p>Message</p></ion-col>
+              <ion-col (click)="goToCall(profile?.Contact)"><img src="assets/icon/call.png" />
+                <p>Call Now</p>
+              </ion-col>
+              <ion-col (click)="goToChat(profile?.Virtual_id,profile?.DeviceGcm)"><img src="assets/icon/message.png" />
+                <p>Message</p>
+              </ion-col>
             </ion-row>
           </div>
 
