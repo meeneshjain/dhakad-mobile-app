@@ -24,7 +24,7 @@ export class AboutUsPage implements OnInit {
       this.utils.presentLoading();
       this.httpService.httpGet(this.httpService.Url.about).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("About Us api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -35,7 +35,7 @@ export class AboutUsPage implements OnInit {
          
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("About us fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);

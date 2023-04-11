@@ -49,14 +49,14 @@ export class MyProfilePage implements OnInit {
       }
       //this.profileImgPath=this.parseData.imgpath;
       this.current_user_profile = parseData.profile_data;
-      console.log('current_user_profile ', this.current_user_profile)
+      
 
     }, (err) => {
-      console.log("My Profile fetch api error :", err);
+      
     });
     
     this.isMyProfile = this.httpService.isMyProfile();
-    console.log("whose profile" + this.isMyProfile);
+    
     if (this.isMyProfile) {
       this.getMyProfile();
     } else {
@@ -84,7 +84,7 @@ export class MyProfilePage implements OnInit {
       let token = localStorage.getItem("Dhakad_Token");
       this.httpService.httpGetwithHeader(this.httpService.Url.myProfile, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("My Profile api :", res);
+        
 
         if (this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -94,11 +94,11 @@ export class MyProfilePage implements OnInit {
         //this.profileImgPath=this.parseData.imgpath;
         this.myProfile = this.parseData.profile_data;
 
-        console.log("My Profile details:", this.myProfile);
+        
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -112,7 +112,7 @@ export class MyProfilePage implements OnInit {
       let user = this.httpService.getUserId();
       this.httpService.httpGetwithHeader(this.httpService.Url.userProfile + user, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("User Profile api :", res);
+        
 
         if (this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -137,7 +137,7 @@ export class MyProfilePage implements OnInit {
         this.save_profile_visitor(this.myProfile.ProfileId);
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -151,21 +151,13 @@ export class MyProfilePage implements OnInit {
       let url = this.httpService.Url.save_profileVisitors + visited_id;
       this.httpService.httpGetwithHeader(url, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("Visitor :", res);
-
-        /*         if (this.platform.is('cordova')) {
-                  this.parseData = JSON.parse(res.data);
-                } else {
-                  this.parseData = res;
-                } */
-        //this.profileImgPath=this.parseData.imgpath;
-        /*     this.myProfile = this.parseData.profile_data;
-    
-            console.log("My Profile details:", this.myProfile); */
+        
+ 
+            
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -179,7 +171,7 @@ export class MyProfilePage implements OnInit {
 
       this.httpService.httpGetwithHeader(this.httpService.Url.getCityName + cityId, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("MCity Name api :", res);
+        
 
         if (this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -187,11 +179,11 @@ export class MyProfilePage implements OnInit {
           this.parseData = res;
         }
         this.cityname = this.parseData.city_name;
-        console.log("city Name", this.cityname);
+        
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -199,7 +191,7 @@ export class MyProfilePage implements OnInit {
   }
   getDOB(date) {
     let d = date.split("T");
-    console.log("d", d);
+    
     return d[0];
   }
 
@@ -216,13 +208,13 @@ export class MyProfilePage implements OnInit {
         } else {
           this.parseData = res;
         }
-        console.log("add to shortlist  api :", this.parseData);
+        
         this.utils.presentAlert(this.parseData.message);
         this.shared_service.load_reload_matches(true);
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("add to shortlist error", err);
+        
         this.utils.presentAlert("Unable to process your request ");
       });
     } else {
@@ -243,7 +235,7 @@ export class MyProfilePage implements OnInit {
         } else {
           this.parseData = res;
         }
-        console.log("send request  api :", this.parseData);
+        
         if (this.parseData.status == true) {
           this.utils.presentAlert(this.parseData.message);
         } else {
@@ -252,7 +244,7 @@ export class MyProfilePage implements OnInit {
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("send request error", err);
+        
         this.utils.presentAlert("Unable to send Request. ");
       });
     } else {
@@ -268,11 +260,11 @@ export class MyProfilePage implements OnInit {
     }
   }
   goToCall(contact: any) {
-    console.log('this.current_user_profile?.Purchase_plan ', this.current_user_profile?.Purchase_plan )
+    
     if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
-      console.log("contact number", contact);
+      
       var regrex = '/^[6-9]\d{9}$/';
-      console.log("Valid contact number", regrex.match(contact));
+      
       if (contact != null && contact.length == 10) {
         this.callNumber.callNumber(contact, true)
           .then(res => console.log('Launched dialer!', res))

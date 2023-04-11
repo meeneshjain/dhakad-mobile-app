@@ -56,7 +56,6 @@ export class ProfilesPage implements OnInit {
           this.parseData = res;
         }
           this.allProfiles=this.parseData.profile_data.data;
-          console.log("profiles"+JSON.stringify(this.allProfiles));
         
       }, (err) => {
         this.utils.dismissLoading();
@@ -130,7 +129,8 @@ export class ProfilesPage implements OnInit {
   }
 
   goToChat(virtualID,DeviceGcm){
-    if (this.current_user_profile?.Purchase_plan != '' ||  this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+    console.log('this.current_user_profile ', this.current_user_profile )
+    if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' &&  this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
       console.log("virtual ID",virtualID);
       localStorage.setItem("Dhakad_Partner_Virtual_id", virtualID);
       localStorage.setItem('gcmTocken',DeviceGcm);
@@ -141,7 +141,7 @@ export class ProfilesPage implements OnInit {
     }
   }
   goToCall(contact : any){
-    if (this.current_user_profile?.Purchase_plan != '' ||  this.current_user_profile?.Purchase_plan != undefined || this.current_user_profile?.Purchase_plan != 0) {
+    if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' &&  this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
       console.log("contact number",contact);
       var regrex = '/^[6-9]\d{9}$/';
       console.log("Valid contact number",regrex.match(contact));

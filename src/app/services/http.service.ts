@@ -15,7 +15,7 @@ export class HttpService {
  img_url : string = "https://dhakadmatrimony.shinebrandseeds.com/";//"http://dhakad.graspcorn.in/";
   Url : any = {
     login : "api/user/login",
-    register : "api/user/register",
+    register: "api/user/newRegister",
     testimonial : "api/home/testimonial",///15",
     successStories : "api/home/successstory?15" ,
     dashboard : "api/home/dashboard",
@@ -51,7 +51,7 @@ export class HttpService {
     dropDownAPI : "api/dropdowndata",
     getState : "api/getState", //"api/home/get_state",
     getCity : "api/getCity/",//"api/home/get_city",
-    advanceSearch:"api/profile/advancesearch",
+    advanceSearch:"api/profile/newAdvanceSearch",
     addBusiness:"api/business/create",//"api/Buisness/addbusiness",
     businesslistcat:"api/Buisness/businesslistcat",
     galleryimagetoprofileimage :"api/profile/set_galleryimage_profile/",//"api/profile/imagetoprofileimage"
@@ -186,7 +186,7 @@ export class HttpService {
         'Authorization': `Bearer ${ token }`
       })
     };
-  console.log(JSON.stringify(httpOptions));
+  
     this.nativeHttp.setDataSerializer('json');
     if(this.platform.is('cordova')) {
       return from(this.nativeHttp.get(this.Base_url + url, {}, {'Authorization': `Bearer ${ token }`}));

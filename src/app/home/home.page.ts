@@ -56,7 +56,7 @@ export class HomePage implements OnInit{
       let token = localStorage.getItem("Dhakad_Token");
       this.httpService.httpGetwithHeader(this.httpService.Url.dashboard,token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("Dashboard api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -90,16 +90,16 @@ export class HomePage implements OnInit{
         });
           
          // this.profileImgPath=this.parseData.profile_image_path;
-          console.log("profiles",typeof this.profiles);
-          console.log("profiles data", this.profiles);
-          console.log("businesses", this.businesses);
-          console.log("successStories", this.successStories);
-          console.log("testimonials", this.testimonials);
+          
+          
+          
+          
+          
           this.shared_service.toggle_loggged_on(true)
       }, (err) => {
         this.utils.dismissLoading();
         this.shared_service.toggle_loggged_on(true)
-        console.log("Dashboard fetch api error :", err);
+        
       });
     } else {
       this.shared_service.toggle_loggged_on(true)
@@ -115,7 +115,7 @@ export class HomePage implements OnInit{
      // this.httpService.httpGetwithHeader(this.httpService.Url.myProfile, token).subscribe((res) => {
       this.httpService.httpGetwithHeader(this.httpService.Url.userProfile+UserId, token).subscribe((res) => { 
        this.utils.dismissLoading();
-        console.log("My Profile api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -124,7 +124,7 @@ export class HomePage implements OnInit{
         }
           this.myProfile=this.parseData.profile_data;
           localStorage.setItem("Dhakad_User_Virtual_id", this.myProfile.Virtual_id);
-          console.log("My Profile details:", this.myProfile);
+          
           this.httpService.publish('profile', this.myProfile);
           this.httpService.publish('profile:update', {
             name: this.myProfile.PName,
@@ -133,7 +133,7 @@ export class HomePage implements OnInit{
         
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -169,10 +169,10 @@ export class HomePage implements OnInit{
         } else {
           this.parseData = res;
         }
-        console.log("send request  api :", this.parseData);
+        
         if(this.parseData.status == true) {
          this.reqsentId = id;
-          console.log("this.reqsentId"+this.reqsentId)
+          
          
           this.utils.presentAlert(this.parseData.message); 
         } else {
@@ -182,7 +182,7 @@ export class HomePage implements OnInit{
         
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("send request error", err); 
+        
         this.utils.presentAlert("Unable to send Request. "); 
       });
     } else {
@@ -192,7 +192,7 @@ export class HomePage implements OnInit{
 
  
   // ionViewDidEnter(){ 
-  //   console.log("Home Page",this.router.url);
+  //   
   //   if(this.nav.getActive().name == '/home'){
   //     //this.platform.backButton.subscribeWithPriority(0, () => {
   //       //navigator['app'].exitApp();

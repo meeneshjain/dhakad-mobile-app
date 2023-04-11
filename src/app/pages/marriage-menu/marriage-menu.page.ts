@@ -23,7 +23,7 @@ export class MarriageMenuPage implements OnInit {
     public httpService: HttpService, private utils: UtilsService, private platform: Platform) {
 
     let id = this.route.snapshot.params['id'];
-    console.log(id);
+    
     
     this.select(id);
 
@@ -59,7 +59,7 @@ export class MarriageMenuPage implements OnInit {
       this.utils.presentLoading();
       this.httpService.httpGet(this.httpService.Url.businessDirectory).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("businessDirectory api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -70,7 +70,7 @@ export class MarriageMenuPage implements OnInit {
         
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("businessDirectory fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -82,7 +82,7 @@ export class MarriageMenuPage implements OnInit {
       this.utils.presentLoading();
       this.httpService.httpGet(this.httpService.Url.marriagePackages).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("marriage packages api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -90,10 +90,10 @@ export class MarriageMenuPage implements OnInit {
           this.parseData = res;
         }
           this.marriagePackages=this.parseData.data;
-          // console.log("marriage packages", this.successStories);
+          // 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("marriage packages fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -105,7 +105,7 @@ export class MarriageMenuPage implements OnInit {
       this.utils.presentLoading();
       this.httpService.httpGet(this.httpService.Url.successStories).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("successStories api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -113,10 +113,10 @@ export class MarriageMenuPage implements OnInit {
           this.parseData = res;
         }
           this.successStories=this.parseData.successstory.data;
-          console.log("successStories", this.successStories);
+          
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("successStories fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -125,7 +125,7 @@ export class MarriageMenuPage implements OnInit {
 
 
   goToDetailStories(storydata){
-    console.log("story data",JSON.stringify(storydata));
+    
     let navigationExtras: NavigationExtras = {
       state: {
           successStory: JSON.stringify(storydata)

@@ -74,12 +74,12 @@ export class MatchesPage implements OnInit {
 			}
 			//this.profileImgPath=this.parseData.imgpath;
 			this.current_user_profile = parseData.profile_data;
-			console.log('current_user_profile ', this.current_user_profile)
+			
 			this.btn1 = 'selected';
 			// this.getAllProfiles(true);
 			this.getNearbyProfiles(true)
 		}, (err) => {
-			console.log("My Profile fetch api error :", err);
+			
 		});
 		
 	}
@@ -124,7 +124,7 @@ export class MatchesPage implements OnInit {
 			let token = localStorage.getItem('Dhakad_Token');
 			this.httpService.httpGetwithHeader(url, token).subscribe(
 				(res) => {
-					console.log('All Profile  api :', res);
+					
 					this.infinite.complete();
 					if (this.currentPage == 0) {
 						if (with_loader) {
@@ -151,7 +151,7 @@ export class MatchesPage implements OnInit {
 					if (with_loader) {
 						this.utils.dismissLoading();
 					}
-					console.log('All Profile  fetch api error :', err);
+					
 				}
 			);
 		} else {
@@ -179,7 +179,7 @@ export class MatchesPage implements OnInit {
 							this.utils.dismissLoading();
 						}
 					}
-					console.log('Shortlisted  api :', res);
+					
 					this.currentPage++;
 					if (this.platform.is('cordova')) {
 						this.parseData = JSON.parse(res.data);
@@ -202,7 +202,7 @@ export class MatchesPage implements OnInit {
 					if (with_loader) {
 						this.utils.dismissLoading();
 					}
-					console.log('All Profile  fetch api error :', err);
+					
 				}
 			);
 		} else {
@@ -224,7 +224,7 @@ export class MatchesPage implements OnInit {
 					} else {
 						this.parseData = res;
 					}
-					console.log('send request  api :', this.parseData);
+					
 					if (this.parseData.status == true) {
 						this.utils.presentAlert(this.parseData.message);
 					} else {
@@ -233,7 +233,7 @@ export class MatchesPage implements OnInit {
 				},
 				(err) => {
 					this.utils.dismissLoading();
-					console.log('send request error', err);
+					
 					this.utils.presentAlert('Unable to send Request. ');
 				}
 			);
@@ -256,12 +256,12 @@ export class MatchesPage implements OnInit {
 					} else {
 						this.parseData = res;
 					}
-					console.log('add to shortlist  api :', this.parseData);
+					
 					this.utils.presentAlert(this.parseData.message);
 				},
 				(err) => {
 					this.utils.dismissLoading();
-					console.log('add to shortlist error', err);
+					
 					this.utils.presentAlert('Unable to process your request ');
 				}
 			);
@@ -336,7 +336,7 @@ export class MatchesPage implements OnInit {
 					if (with_loader) {
 						this.utils.dismissLoading();
 					}
-					console.log('add to shortlist error', err);
+					
 					this.utils.presentAlert('Unable to process your request ');
 				}
 			);
@@ -346,7 +346,7 @@ export class MatchesPage implements OnInit {
 	}
 
 	goToChat(virtualID, DeviceGcm) {
-		console.log('virtual ID', virtualID);
+		
 		localStorage.setItem('Dhakad_Partner_Virtual_id', virtualID);
 		localStorage.setItem('gcmTocken', DeviceGcm);
 		
@@ -358,9 +358,9 @@ export class MatchesPage implements OnInit {
 	}
 	goToCall(contact: any) {
 		if (this.current_user_profile?.Purchase_plan != null && this.current_user_profile?.Purchase_plan != '' && this.current_user_profile?.Purchase_plan != undefined && this.current_user_profile?.Purchase_plan != 0) {
-			console.log('contact number', contact);
+			
 			var regrex = '/^[6-9]d{9}$/';
-			console.log('Valid contact number', regrex.match(contact));
+			
 			if (contact != null && contact.length == 10) {
 				this.callNumber
 					.callNumber(contact, true)

@@ -54,10 +54,10 @@
 
       <div class="content">
         
-        <ion-select multiple="true" formControlName="AboutMe">
+        <ion-select multiple="true" formControlName="AboutMe" [(ngModel)]="this.myProfile.AboutMe">
             <ion-select-option  *ngFor="let d of aboutMeOptions" value={{d.id}}>{{d.name}}</ion-select-option>
           </ion-select>
-          <!-- <ion-textarea  value="" readonly="false" autoGrow="true" formControlName="AboutMe"></ion-textarea>  -->
+          <!-- <ion-textarea  value="" readonly="false" autoGrow="true" formControlName="AboutMe" [(ngModel)]="this.myProfile.AboutMe"></ion-textarea>  -->
       </div>
 
       <ion-row class="heading">
@@ -66,11 +66,11 @@
       </ion-row>
 
       <div class="content">
-        <ion-select multiple="true" formControlName="aboutLifePartner">
+        <ion-select multiple="true" formControlName="aboutLifePartner" [(ngModel)]="this.myProfile.aboutLifePartner">
           <ion-select-option *ngFor="let d of aboutMeOptions" value={{d.id}}>{{d.name}}</ion-select-option>
           
         </ion-select>
-        <!-- <ion-textarea value="" readonly="false" autoGrow="true" formControlName="aboutLifePartner"></ion-textarea>   -->
+        <!-- <ion-textarea value="" readonly="false" autoGrow="true" formControlName="aboutLifePartner" [(ngModel)]="this.myProfile.aboutLifePartner"></ion-textarea>   -->
       </div>
 
       <ion-row class="heading">
@@ -80,10 +80,10 @@
 
       <div class="content">
         
-        <ion-select  formControlName="preferences">
+        <ion-select  formControlName="preferences" [(ngModel)]="this.myProfile.preferences">
           <ion-select-option *ngFor="let d of prefrence" value={{d}}>{{d}}</ion-select-option>
         </ion-select>
-        <!-- <ion-textarea value="" readonly="false" autoGrow="true" formControlName="preferences"></ion-textarea>  -->
+        <!-- <ion-textarea value="" readonly="false" autoGrow="true" formControlName="preferences" [(ngModel)]="this.myProfile.preferences"></ion-textarea>  -->
       </div>
   
   </ion-card>
@@ -93,14 +93,14 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Member id</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" readonly class="line-rev" value="" formControlName="Virtual_id"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" readonly class="line-rev" value="" formControlName="Virtual_id" [(ngModel)]="this.myProfile.Virtual_id"></ion-input></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Profile for</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Profile_for">
+        <ion-select placeholder="" formControlName="Profile_for" [(ngModel)]="this.myProfile.Profile_for">
           <ion-select-option *ngFor="let d of profile_for" value={{d}}>{{d}}</ion-select-option>
          </ion-select>
       </ion-col>
@@ -109,7 +109,7 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Gender</span></p></ion-col>
-      <ion-col size="7"> <ion-input type="text" readonly class="line-rev" value="" formControlName="Gender"></ion-input>
+      <ion-col size="7"> <ion-input type="text" readonly class="line-rev" value="" formControlName="Gender" [(ngModel)]="this.myProfile.Gender"></ion-input>
         
       </ion-col>
     </ion-row>
@@ -117,28 +117,28 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>DOB</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" class="line-rev" readonly formControlName="DOB"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" class="line-rev" readonly formControlName="DOB" [(ngModel)]="this.myProfile.DOB"></ion-input></ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Birth Time</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="time" value="" class="line-rev" readonly formControlName="birthTime"></ion-input> -->
-        <ion-datetime style="border-bottom: 1px solid #eae6e6;" formControlName="birthTime" displayFormat="h:mm A"  pickerFormat="h:mm A"></ion-datetime>
+        <!-- <ion-input type="time" value="" class="line-rev" readonly formControlName="birthTime" [(ngModel)]="this.myProfile.birthTime"></ion-input> -->
+        <ion-datetime style="border-bottom: 1px solid #eae6e6;" formControlName="birthTime" [(ngModel)]="this.myProfile.dob_time" displayFormat="h:mm A"  pickerFormat="h:mm A"></ion-datetime>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Age</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" class="line-rev" readonly formControlName="age"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" class="line-rev" readonly formControlName="age" [(ngModel)]="this.myProfile.age"></ion-input></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Height</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Height">
+        <ion-select placeholder="" formControlName="Height" [(ngModel)]="this.myProfile.Height">
               <ion-select-option *ngFor="let d of height" value={{d.height_cm}}>{{d.height_name}}</ion-select-option>
               
         </ion-select>
@@ -149,7 +149,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Skin tone</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Skin">
+        <ion-select placeholder="" formControlName="Skin" [(ngModel)]="this.myProfile.Skin">
           <ion-select-option *ngFor="let d of skinTone" value={{d}}>{{d}}</ion-select-option>
           
         </ion-select>
@@ -160,7 +160,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Body tone</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Body">
+        <ion-select placeholder="" formControlName="Body" [(ngModel)]="this.myProfile.Body">
           <ion-select-option *ngFor="let d of body_type" value={{d}}>{{d}}</ion-select-option>
          
         </ion-select>
@@ -171,7 +171,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Mangalik</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Manglik">
+        <ion-select placeholder="" formControlName="Manglik" [(ngModel)]="this.myProfile.Manglik">
           <ion-select-option >Yes</ion-select-option>
           <ion-select-option >No</ion-select-option>
         </ion-select>
@@ -182,8 +182,8 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Caste</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Caste">
-          <ion-select-option *ngFor="let cs of caste" value={{cs}}>{{cs}}</ion-select-option>
+        <ion-select placeholder="" formControlName="Caste" [(ngModel)]="this.myProfile.Caste"  >
+          <ion-select-option *ngFor="let cs of caste" [value]="cs">{{cs}}</ion-select-option>
          
         </ion-select>
       </ion-col>
@@ -192,14 +192,17 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Gotra</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" formControlName="MTongue"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" formControlName="MTongue" [(ngModel)]="this.myProfile.MTongue"></ion-input></ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Hobbies</span></p></ion-col>
       <ion-col size="7">
-        <ion-select multiple="true" formControlName="Hobbies">
-          <ion-select-option *ngFor="let d of hobbiesoptions" value={{d.id}}>{{d.name}}</ion-select-option>
+        <ion-select multiple="true" name="hobbies" id="hobbies" formControlName="Hobbies" [(ngModel)]="this.myProfile.hobbies"   >
+          <ng-container *ngFor="let d of hobbiesoptions">
+            
+            <ion-select-option [value]="d.id" > {{d.name}}</ion-select-option>
+          </ng-container>
           
         </ion-select>
        
@@ -209,14 +212,14 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Mother subcast</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" formControlName="SubCaste"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" formControlName="SubCaste" [(ngModel)]="this.myProfile.SubCaste"></ion-input></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Martial Status</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Marrital">
+        <ion-select placeholder="" formControlName="Marrital" [(ngModel)]="this.myProfile.Marrital">
           <ion-select-option *ngFor="let d of maritial_status" value={{d}}>{{d}}</ion-select-option>
           
         </ion-select>
@@ -227,7 +230,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Physical disability</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Disability">
+        <ion-select placeholder="" formControlName="Disability" [(ngModel)]="this.myProfile.Disability">
           <ion-select-option >Yes</ion-select-option>
           <ion-select-option >No</ion-select-option>
         </ion-select>
@@ -238,7 +241,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Drink</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Drink">
+        <ion-select placeholder="" formControlName="Drink" [(ngModel)]="this.myProfile.Drink">
           <ion-select-option >Yes</ion-select-option>
           <ion-select-option >No</ion-select-option>
           <!-- <ion-select-option >Occassional</ion-select-option> -->
@@ -249,7 +252,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Smoke</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Smoke">
+        <ion-select placeholder="" formControlName="Smoke" [(ngModel)]="this.myProfile.Smoke">
           <ion-select-option >Yes</ion-select-option>
           <ion-select-option >No</ion-select-option>
           <!-- <ion-select-option >Occassional</ion-select-option> -->
@@ -260,7 +263,7 @@
     <!-- <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>City</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" formControlName="City"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" formControlName="City" [(ngModel)]="this.myProfile.City"></ion-input></ion-col>
     </ion-row> -->
    
 
@@ -273,7 +276,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Educational Level</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Elevel">
+        <ion-select placeholder="" formControlName="Elevel" [(ngModel)]="this.myProfile.Elevel">
           <ion-select-option *ngFor="let d of education_level" value={{d}}>{{d}}</ion-select-option>
           
         </ion-select>
@@ -284,7 +287,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Education Field</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Efield">
+        <ion-select placeholder="" formControlName="Efield" [(ngModel)]="this.myProfile.Efield">
           <ion-select-option *ngFor="let d of education_Field" value={{d}}>{{d}}</ion-select-option>
           
         </ion-select>
@@ -295,8 +298,8 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Occupation</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="text" value="" formControlName="Work"></ion-input> -->
-        <ion-select placeholder="" formControlName="Work">
+        <!-- <ion-input type="text" value="" formControlName="Work" [(ngModel)]="this.myProfile.Work"></ion-input> -->
+        <ion-select placeholder="" formControlName="Work" [(ngModel)]="this.myProfile.Work">
           <ion-select-option *ngFor="let d of occupation" value={{d}}>{{d}}</ion-select-option>
           </ion-select>
       </ion-col>
@@ -306,8 +309,8 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Occupation details</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="text" value="" formControlName="WorkAs"></ion-input>  -->
-         <ion-select placeholder="" formControlName="WorkAs">
+        <!-- <ion-input type="text" value="" formControlName="WorkAs" [(ngModel)]="this.myProfile.WorkAs"></ion-input>  -->
+         <ion-select placeholder="" formControlName="WorkAs" [(ngModel)]="this.myProfile.WorkAs">
           <ion-select-option *ngFor="let d of OccupationDetails" value={{d}}>{{d}}</ion-select-option>
           </ion-select> 
       </ion-col>
@@ -317,7 +320,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Income</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Income">
+        <ion-select placeholder="" formControlName="Income" [(ngModel)]="this.myProfile.Income">
           <ion-select-option *ngFor="let d of annualIncome" value={{d}}>{{d}}</ion-select-option>
           
         </ion-select>
@@ -330,14 +333,14 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Address</span></p></ion-col>
-      <!-- <ion-col size="7"><ion-input type="text" value="" formControlName="villageCity"></ion-input></ion-col> -->
-      <ion-col size="7"><ion-textarea class="paddingTopBtm0" value="" formControlName="villageCity"></ion-textarea></ion-col>
+      <!-- <ion-col size="7"><ion-input type="text" value="" formControlName="villageCity" [(ngModel)]="this.myProfile.villageCity"></ion-input></ion-col> -->
+      <ion-col size="7"><ion-textarea class="paddingTopBtm0" value="" formControlName="villageCity" [(ngModel)]="this.myProfile.Address"></ion-textarea></ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Country</span></p></ion-col>
       <ion-col size="7">
-      <ion-select  formControlName="Country">
+      <ion-select  formControlName="Country" [(ngModel)]="this.myProfile.Work_Country">
       <ion-select-option value="101">India</ion-select-option>
         <!-- <ion-select-option *ngFor="let data of cityData" value={{data.id}}>{{data.city_name}}</ion-select-option> -->
       </ion-select>
@@ -347,7 +350,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>State</span></p></ion-col>
       <ion-col size="7">
-      <ion-select  formControlName="State" (ionChange)="getCity($event.target.value)">
+      <ion-select  formControlName="State" [(ngModel)]="this.myProfile.State" (ionChange)="getCity($event.target.value)">
        <ion-select-option *ngFor="let data of stateData" value={{data.id}}>{{data.name}}</ion-select-option>
         </ion-select>
       </ion-col> 
@@ -356,7 +359,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>City</span></p></ion-col>
       <ion-col size="7">
-      <ion-select  formControlName="City">
+      <ion-select  formControlName="City" [(ngModel)]="this.myProfile.City">
         <ion-select-option *ngFor="let data of cityData" value={{data.id}}>{{data.city_name}}</ion-select-option>
       </ion-select>
       </ion-col>
@@ -366,22 +369,22 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Pincode</span></p></ion-col>
       <ion-col size="7">
-      <ion-input type="number" maxlength="6" onKeyPress="if(this.value.length==6) return false;" formControlName="Pincode"></ion-input>
+      <ion-input type="number" maxlength="6" onKeyPress="if(this.value.length==6) return false;" formControlName="Pincode" [(ngModel)]="this.myProfile.Pincode"></ion-input>
     </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Father name</span></p></ion-col>
-      <ion-col size="7"><ion-input type="text" value="" formControlName="Father"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="text" value="" formControlName="Father" [(ngModel)]="this.myProfile.Father"></ion-input></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Father occupation</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="text" value="" formControlName="Fstatus">      </ion-input> -->
-           <ion-select placeholder="" formControlName="Fstatus">
+        <!-- <ion-input type="text" value="" formControlName="Fstatus" [(ngModel)]="this.myProfile.Fstatus">      </ion-input> -->
+           <ion-select placeholder="" formControlName="Fstatus" [(ngModel)]="this.myProfile.Fstatus">
                   <ion-select-option *ngFor="let d of fatherOccupation" value={{d}}>{{d}}</ion-select-option>
              </ion-select>
          
@@ -392,8 +395,8 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Mother occupation</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="text" value="" formControlName="Mstatus"></ion-input> -->
-        <ion-select placeholder="" formControlName="Mstatus">
+        <!-- <ion-input type="text" value="" formControlName="Mstatus" [(ngModel)]="this.myProfile.Mstatus"></ion-input> -->
+        <ion-select placeholder="" formControlName="Mstatus" [(ngModel)]="this.myProfile.Mstatus">
           <ion-select-option *ngFor="let d of motherOccupation" value={{d}}>{{d}}</ion-select-option>
      </ion-select>
       </ion-col>
@@ -403,7 +406,7 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>No of brother</span></p></ion-col>
       <ion-col size="7">
-        <ion-select placeholder="" formControlName="Brother">
+        <ion-select placeholder="" formControlName="Brother" [(ngModel)]="this.myProfile.Brother">
           <ion-select-option >0</ion-select-option>
           <ion-select-option >1</ion-select-option>
           <ion-select-option >2</ion-select-option>
@@ -415,7 +418,7 @@
           <ion-select-option >8</ion-select-option>
           <ion-select-option >9</ion-select-option>
      </ion-select>
-        <!-- <ion-input type="text" value="" formControlName="Brother"></ion-input> -->
+        <!-- <ion-input type="text" value="" formControlName="Brother" [(ngModel)]="this.myProfile.Brother"></ion-input> -->
       </ion-col>
     </ion-row>
 
@@ -423,8 +426,8 @@
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>No of sister</span></p></ion-col>
       <ion-col size="7">
-        <!-- <ion-input type="text" value="DM70388" formControlName="Sister"></ion-input> -->
-        <ion-select placeholder="" formControlName="Sister">
+        <!-- <ion-input type="text" value="DM70388" formControlName="Sister" [(ngModel)]="this.myProfile.Sister"></ion-input> -->
+        <ion-select placeholder="" formControlName="Sister" [(ngModel)]="this.myProfile.Sister">
           <ion-select-option >0</ion-select-option>
           <ion-select-option >1</ion-select-option>
           <ion-select-option >2</ion-select-option>
@@ -442,7 +445,7 @@
     <ion-row>
       <ion-col size="1"><img src="assets/icon/request.png"></ion-col>
       <ion-col size="4"><p><span>Father Contact</span></p></ion-col>
-      <ion-col size="7"><ion-input type="tel" value="" formControlName="FatherContact" maxlength="10"></ion-input></ion-col>
+      <ion-col size="7"><ion-input type="tel" value="" formControlName="FatherContact" [(ngModel)]="this.myProfile.FatherContact" maxlength="10"></ion-input></ion-col>
     </ion-row>
     <div class="error-messages">
       <ng-container *ngFor="let error of error_messages.FatherContacts">

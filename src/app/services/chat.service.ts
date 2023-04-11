@@ -44,7 +44,6 @@ export class ChatService {
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore,private http: HttpClient) { 
     this.afAuth.onAuthStateChanged((user) => {
       this.currentUser = user;    
-      console.log("current user",this.currentUser);  
     });
   }
 
@@ -55,7 +54,7 @@ export class ChatService {
     );
 
     const uid = credential.user.uid;
- 
+    console.log('uid ', uid )
     return this.afs.doc(
       `users/${uid}`
     ).set({
@@ -65,14 +64,7 @@ export class ChatService {
       displayName : userName
     })
   }
-
-//   getUsersData() {
-//     const userId = this.firebase.auth().currentUser.uid;
-//     return firebase.database().ref('usersProfile')
-//                             .once('value')        
-//                             .then(snapshot => snapshot.val())    
-//                             .then(users => console.log(users));
-// }
+ 
    signIn({ email, password }) {
      return new Promise<any>((resolve, reject) => {
       this.afAuth.signInWithEmailAndPassword(email, password)
@@ -86,35 +78,14 @@ export class ChatService {
   signOut(): Promise<void> {
     return this.afAuth.signOut();
   }
-
-  // updatePassword(password) {
-  //   this.currentUser.updatePassword(password)
-  //     .then(() => {
-  //       //this.password = '';
-  //       this.presentToast('Password updated', 'bottom', 1000);
-  //       this.error = '';
-  //     })
-  //     .catch(err => {
-  //       console.log(` failed ${err}`);
-  //       this.error = err.message;
-  //     });
-  // }
  
-  // addChatMessage(msg) {
-  //   return this.afs.collection('messages').add({
-  //     msg: msg,
-  //     from: this.currentUser.uid,
-  //     createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  //   });
-  // }
-
   addChatMessage(msg, name) {	
     // let key = this.generateRandomString(16);	
     let user1=localStorage.getItem("Dhakad_User_Virtual_id");	
     let user2=localStorage.getItem("Dhakad_Partner_Virtual_id");	
     let roomName = 'chat_'+(user1<user2 ? user1+'_'+user2 : user2+'_'+user1);	
       console.log(user1+', '+user2+' => '+ roomName);    //collection('messages')	
-  
+  console.log('this.currentUser.uid ', this.currentUser.uid )
     return this.afs.collection('messages').doc(roomName).collection('chats').add({
       msg: msg,	
       from: this.currentUser.uid,	

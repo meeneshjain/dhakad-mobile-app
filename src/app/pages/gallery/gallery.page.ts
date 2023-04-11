@@ -39,7 +39,7 @@ export class GalleryPage implements OnInit {
       let token = localStorage.getItem("Dhakad_Token");
       this.httpService.httpGetwithHeader(this.httpService.Url.gallery, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("Gallery api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -47,21 +47,21 @@ export class GalleryPage implements OnInit {
           this.parseData = res;
         }
           this.gallery=this.parseData.data;
-          console.log(this.parseData.profilepath);
+          
           this.userImg = [];
          // this.gallery.forEach(i => this.userImg.push(this.profileImgPath+i.image));
         // this.gallery.forEach(i => this.userImg.push(this.profileImgPath+i.full));
         this.userImg = this.gallery.filter(obj => {
           obj.loadImage = false;
-          obj.imagepath = obj.full;
-          obj.full = this.profileImgPath + obj.full
+          obj.imagepath = obj.image;
+          obj.full = this.profileImgPath + obj.image
           return obj
         })
-         console.log("data image"+this.userImg);
+         
         
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("Gallery fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -109,13 +109,13 @@ export class GalleryPage implements OnInit {
     this.platform.ready().then(() => {
       if(this.platform.is('cordova')){
         this.camera.getPicture(cameraOptions).then((imgData) => {
-         // console.log('image data =>  ', imgData);
+         // 
           this.base64Img = 'data:image/jpeg;base64,' + imgData;
           this.userImg.push(this.base64Img);
           this.uploadedImage =[];
           this.uploadedImage.push(imgData);
           }, (err) => {
-          console.log(err);
+          
           })
          
       }
@@ -132,11 +132,11 @@ export class GalleryPage implements OnInit {
 //   this.imagePicker.getPictures(options).then((results) => {  
 //     results.forEach(i => this.userImg.push("data:image/jpeg;base64," + i));
 //     alert(this.userImg);
-//     console.log("Image Lists", this.userImg);  
+//     
 // }, (error) => {  
 //     // Handle error 
 //     alert(error);  
-//     console.log("Error occurred  while loading", error);  
+//     
 // }); 
   
 // }
@@ -153,7 +153,7 @@ takePicture(sourceType: PictureSourceType) {
   };
 
   this.camera.getPicture(options).then(image => {
-    //console.log(image);
+    //
 
     if (
       this.platform.is('android') &&
@@ -178,14 +178,14 @@ uploadImage(){
     // for (let file of this.userImg) {
     //   fd.append('images[]', file);
     // }
-   // console.log("this.uploadedImage"+JSON.stringify(this.uploadedImage));
+   // 
    
   
     //for(var i=0;i< this.uploadedImage.length;i++ ){
     // var fileDataImage = this.convertBase64ToFile(this.uploadedImage[i]);
  
-  // console.log("fileDataImage"+JSON.stringify(fileDataImage));
-  // console.log("fileDataImage"+JSON.stringify(fileDataImage.name));
+  // 
+  // 
 //   var bstr = atob(this.uploadedImage[i]),
 //   n = bstr.length, 
 //   u8arr = new Uint8Array(n);
@@ -195,18 +195,18 @@ uploadImage(){
 // }
 
 // var file = new File([u8arr],'test'+i, {type:'image/jpeg'});
-// console.log("file",file);
-// console.log("file type",file[0]);
+// 
+// 
  
 // var blob = new Blob([this.uploadedImage[i]], {type: 'image/png'});
 // var file = new File([blob], 'imageFileName.png');
-//console.log("data file"+JSON.stringify(file));
+//
 // this.urltoFile(this.uploadedImage[i], 'test'+i+'.png')
 // .then(function(file){
-//     console.log(file);
+//     
 // });
 // var file =  this.dataURLtoFile(this.uploadedImage[i],'test'+i+'.jpeg');
-// console.log("file"+file);
+// 
 // var image = document.getElementById('upload-photo');
 // image = this.uploadedImage[i];  
 //     // fd.append('images[]', file);
@@ -216,11 +216,11 @@ uploadImage(){
     let data = {
        "images" : this.uploadedImage
     }
-    console.log("postparams"+JSON.stringify(data));
-   // console.log("form data"+JSON.stringify(fd));
+    
+   // 
     this.httpService.httpPostwithHeader(this.httpService.Url.addmultipleimag,data, token).subscribe((res) => {
       this.utils.dismissLoading();
-      console.log("update Img :", res);
+      
 
       if(this.platform.is('cordova')) {
         this.parseData = JSON.parse(res.data);
@@ -229,7 +229,7 @@ uploadImage(){
       }
        // this.gallery=this.parseData.data;
        //alert(this.parseData );
-       console.log("Status for image upload",this.parseData.status);
+       
        if(this.parseData.status == true) {
         this.utils.presentAlert(this.parseData.message);
        }else{
@@ -238,7 +238,7 @@ uploadImage(){
       
     }, (err) => {
       this.utils.dismissLoading();
-      console.log("upload Image api error :", err);
+      
     });
   } else {
     this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -289,7 +289,7 @@ dataURLtoFile(dataurl, filename) {
   );
 }
 async onItemClicked(data, idx){
-console.log("item selected"+data);
+
 
 this.currentSelected = idx;
 const actionSheet = await this.actionSheetController.create({
@@ -315,28 +315,28 @@ await actionSheet.present();
 }
 
 updateProfileImage(data) {
-  console.log("image selected"+data);
-  console.log("item selected length"+data.length);
-  let postParams;
+  
+  
+ /* let postParams;
   let apiName;
   var splitData = data.split(":");
-  console.log("split data"+splitData[0]);
-  if(splitData[0] == 'http'){
+  
+   if(splitData[0] == 'http'){
     var imgName = splitData[1].split("/")[5];
-    console.log("Image Name"+imgName);
+    
     var selectedData = this.gallery.filter((item)=>{
       if(item.image.split("/")[2] == imgName)
       return item;
     });
-    console.log("Selected data"+JSON.stringify(selectedData));
+    
     // postParams= {
     //   "image_id" : selectedData[0].id,
     //   "image_name" : selectedData[0].image
     // }
     apiName = this.httpService.Url.galleryimagetoprofileimage;
     if(this.utils.isOnline()) {
-      console.log("postParams"+JSON.stringify(postParams));
-      console.log("api name"+apiName);
+      
+      
        this.utils.presentLoading();
        let token = localStorage.getItem("Dhakad_Token");
        this.httpService.httpGetwithHeader(apiName+selectedData[0].id, token).subscribe((res) => {
@@ -349,19 +349,19 @@ updateProfileImage(data) {
          }
         if(this.parseData.status == true){
         
-           console.log( this.parseData.image_url);
+           
              this.httpService.publish('profile:updateImg', {
            profileImg: selectedData[0].image
        });
         
        }
        
-         console.log("updateProfileImage api :", this.parseData); 
+         
          this.utils.presentAlert(this.parseData.message);
           
        }, (err) => {
          this.utils.dismissLoading();
-         console.log("updateProfileImage error", err); 
+         
          this.utils.presentAlert("Unable to process your request. Please try later."); 
        });
      } else {
@@ -370,16 +370,18 @@ updateProfileImage(data) {
  
   }else{
     var splitBase64 = data.split(",")[1];
+    //  apiName = this.httpService.Url.updateProfileImage;
+    apiName = this.httpService.Url.register;
+  } */
+  if(this.utils.isOnline()) {
+    let apiName = this.httpService.Url.register;
     let UserId = localStorage.getItem("Dhakad_Login_UserID");
-    postParams= {  
+    let postParams= {  
       "id": UserId,  
-      "userimg": splitBase64,    
+      "userimg": data.image,    
   }
-//  apiName = this.httpService.Url.updateProfileImage;
-apiName = this.httpService.Url.register;
-if(this.utils.isOnline()) {
-  console.log("postParams"+JSON.stringify(postParams));
-  console.log("api name"+apiName);
+    
+  
    this.utils.presentLoading();
    let token = localStorage.getItem("Dhakad_Token");
    this.httpService.httpPostwithHeader(apiName, postParams, token).subscribe((res) => {
@@ -392,25 +394,24 @@ if(this.utils.isOnline()) {
      }
     if(this.parseData.status == true){
     
-       console.log( this.parseData.image_url);
+       
          this.httpService.publish('profile:updateImg', {
        profileImg: this.parseData.user.ProfileImg
    });
     
    }
    
-     console.log("updateProfileImage api :", this.parseData); 
+     
      this.utils.presentAlert(this.parseData.message);
       
    }, (err) => {
      this.utils.dismissLoading();
-     console.log("updateProfileImage error", err); 
+     
      this.utils.presentAlert("Unable to process your request. Please try later."); 
    });
  } else {
    this.utils.presentAlert(this.utils.appConfig.internetMsg);
  }
-  }
  
 }
 

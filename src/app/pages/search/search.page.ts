@@ -40,8 +40,8 @@ export class SearchPage implements OnInit {
   }
 
   onSearchByID(event: any, id_value) {
-    console.log(event);
-    console.log("myID" + this.myID);
+    
+    
     let postparms = "?search=" + id_value + '&type=id';          //  "user_by" : "test test"
 
 
@@ -52,20 +52,20 @@ export class SearchPage implements OnInit {
       this.dataByID  = [];
       this.httpService.httpGetwithHeader(this.httpService.Url.search + postparms, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("search  api :", res);
+        
 
         if (this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
         } else {
           this.parseData = res;
         }
-        console.log('this.parseData ', this.parseData)
+        
         if (this.parseData.status == true) {
           if (this.parseData.message != undefined) {
             this.utils.presentAlert(this.parseData.message);
           }
           this.dataByID = this.parseData.data.data;
-          console.log('this.dataByID ', this.dataByID)
+          
         } else {
           if (this.parseData.message != undefined) {
             this.utils.presentAlert(this.parseData.message);
@@ -74,7 +74,7 @@ export class SearchPage implements OnInit {
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("requestSent fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -83,8 +83,8 @@ export class SearchPage implements OnInit {
   }
 
   onSearchByName(event: any, name_value) {
-    console.log(event);
-    console.log("myName" + this.myName);
+    
+    
 
     let postparms = "?search=" + name_value + '&type=name';
     if (this.utils.isOnline) {
@@ -92,8 +92,8 @@ export class SearchPage implements OnInit {
       let token = localStorage.getItem("Dhakad_Token");
       this.httpService.httpGetwithHeader(this.httpService.Url.search + postparms, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("search  api :", res);
-        console.log("search api:", res.status);
+        
+        
 
         if (this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -102,7 +102,7 @@ export class SearchPage implements OnInit {
         }
         if (this.parseData.status == true) {
           // this.utils.presentAlert(this.parseData.message); 
-          console.log("data ", this.parseData.data.data);
+          
           this.dataByName = this.parseData.data.data;
 
         } else {
@@ -111,7 +111,7 @@ export class SearchPage implements OnInit {
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("requestSent fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);

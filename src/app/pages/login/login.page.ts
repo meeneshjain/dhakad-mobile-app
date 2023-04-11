@@ -214,7 +214,7 @@ export class LoginPage implements OnInit {
           // this.videoService.loginQuickBlox(data);
           this.chatService.signIn(data)
             .then(res => {
-              console.log(res);
+              console.log("chat data - ",res);
               //  this.errorMessage = "";
               //  this.navCtrl.navigateForward('/dashboard');
             }, err => {
@@ -291,8 +291,9 @@ export class LoginPage implements OnInit {
     if (this.platform.is('cordova')) {
       if (this.platform.is('android')) {
         params = {
+          // webClientId: '701269312784-4ud6fgv1obi0pnj1se5467j02iepshr5.apps.googleusercontent.com',
           webClientId: '701269312784-4ud6fgv1obi0pnj1se5467j02iepshr5.apps.googleusercontent.com',
-          idToken: 'AIzaSyBSPsxDYtLip9pRVSKI-Qlso3JpHcL7vIk', 
+          idToken: 'AIzaSyDcm7ywIbeqnE1m0CiswyJVMxlxiSeRy3U', 
           offline: true,
           };
         

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { HttpService } from './../../services/http.service';
 import { UtilsService } from './../../services/utils.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-otp',
@@ -15,7 +16,7 @@ export class ConfirmOtp implements OnInit {
   otp: number;
  ;
   constructor(private navCtrl: NavController, private httpService: HttpService, private utils: UtilsService,
-    private platform: Platform) {
+    private platform: Platform, private ActivatedRouter: ActivatedRoute, private route: Router) {
       this.token = this.httpService.getValidateOTPToken();
      
       console.log("forget password token", this.token);
@@ -101,4 +102,10 @@ export class ConfirmOtp implements OnInit {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
     }
   }
+  
+  navigate_back() {
+    this.route.navigateByUrl('/login');
+  }
+
+  
 }

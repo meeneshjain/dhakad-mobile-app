@@ -62,21 +62,21 @@ export class AddBusinessPage implements OnInit {
      
     this.httpService.httpGet(this.httpService.Url.getState).subscribe((res) => {
      this.utils.dismissLoading();
-         console.log("State api :", res);
+         
          
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
          } else {
           this.parseData = res;
          }
-        console.log("state details", this.parseData);
+        
         this.stateData=this.parseData;
       // if(this.parseData.message == 'Success'){
       //   this.stateData=this.parseData.data;
       // //  this.businessCat = parseData1.data;
       // }
      }, (err) => {
-         console.log("religion fetch api error :", err);
+         
       });
      
     } else {
@@ -85,7 +85,7 @@ export class AddBusinessPage implements OnInit {
   }
 
   getCity(event:any){
-    console.log("value of city",event)
+    
  
     if(this.utils.isOnline) {
       let postData = {
@@ -93,19 +93,19 @@ export class AddBusinessPage implements OnInit {
       }
      this.httpService.httpGet(this.httpService.Url.getCity+event).subscribe((res) => {
       
-       console.log("city api :", res);
+       
  
        if(this.platform.is('cordova')) {
          this.parseData = JSON.parse(res.data);
        } else {
          this.parseData = res;
        }
-       console.log("city details", this.parseData);
+       
         this.cityData=this.parseData;
        
      }, (err) => {
        
-       console.log("religion fetch api error :", err);
+       
      });
    } else {
      this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -116,16 +116,16 @@ export class AddBusinessPage implements OnInit {
    get f() { return this.businessForm.controls; }
 
    addBusiness(){
-     console.log("called add "+this.businessForm);
+     
      if(this.businessForm.invalid){
       this.utils.presentAlert("Please enter all details!!");
-       console.log("Please enter all details!!");
+       
        return;
      }
  /*     if(this.userImg === "assets/images/photo2.png") {
       this.utils.presentAlert("Please Select Profile Image")
     }else { */
-      console.log("form validated");
+      
       var data ={
         "business_id" : this.businessForm.controls.Business.value,  
         "name" : this.businessForm.controls.Name.value,
@@ -141,30 +141,30 @@ export class AddBusinessPage implements OnInit {
          "applink":this.businessForm.controls.playstoreLink.value, 
          "vender_img1" : this.imgUpload
  }
-      console.log("post params", JSON.stringify(data));
+      
       if(this.utils.isOnline) {
         let token = localStorage.getItem("Dhakad_Token");
         this.utils.presentLoading();
         this.httpService.httpPostwithHeader(this.httpService.Url.addBusiness,data,token).subscribe((res) => {
           this.utils.dismissLoading();
-          console.log("business Add api :", res);
+          
   
           if(this.platform.is('cordova')) {
             this.parseData = JSON.parse(res.data);
           } else {
             this.parseData = res;
           }
-           console.log("data"+JSON.stringify( this.parseData ));
+           
            this.utils.presentAlert(this.parseData.message);
            this.navCtrl.navigateForward('/home');
 
           
         }, (err) => {
           this.utils.dismissLoading();
-          console.log("businessList fetch api error :", err);
+          
           if(this.platform.is('cordova')) {
             this.parseData = JSON.parse(err.error);
-            console.log("err msg",this.parseData.message);
+            
             if(this.parseData.errors != undefined && this.parseData.errors.email != undefined){
               this.utils.presentAlert(this.parseData.errors.email[0]);
             }else if(this.parseData.errors != undefined && this.parseData.errors.contact != undefined){
@@ -173,7 +173,7 @@ export class AddBusinessPage implements OnInit {
              this.utils.presentAlert(this.parseData.message);
           } else {
             this.parseData = err;
-            console.log("err msg",this.parseData.error.message);
+            
           this.utils.presentAlert(this.parseData.error.message);
           }
          
@@ -193,18 +193,18 @@ export class AddBusinessPage implements OnInit {
       let token = localStorage.getItem("Dhakad_Token");//marital_status
       this.httpService.httpGetwithHeader(this.httpService.Url.dropDownAPI, token).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("My Profile api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
         } else {
           this.parseData = res;
         }
-         console.log("data of updated_marital status"+ JSON.stringify(this.parseData));
+         
          this.businessCat =  this.parseData.bus_category;
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("My Profile fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -262,12 +262,12 @@ export class AddBusinessPage implements OnInit {
             this.userImg = 'data:image/jpeg;base64,' + imgData;
           }
           this.imgUpload = imgData;
-          // console.log('image data =>  ', imgData);
+          // 
           // this.userImg = 'data:image/jpeg;base64,' + imgData;
 
 
         }, (err) => {
-          console.log(err);
+          
         })
 
       }
@@ -327,7 +327,7 @@ export class AddBusinessPage implements OnInit {
           }
           this.imgUpload = imgData;
           }, (err) => {
-          console.log(err);
+          
           })
          
       }

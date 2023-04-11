@@ -18,7 +18,7 @@ export class OtpPage implements OnInit {
   constructor(private navCtrl: NavController, private httpService: HttpService, private utils: UtilsService, private ActivatedRouter: ActivatedRoute,
     private route: Router, private platform: Platform) {
       this.token = this.httpService.getLoginRegisterToken();
-      console.log("login/register token", this.token);
+      
       this.otpLoginFlag = this.httpService.getOtpFlag();
 
   }
@@ -27,7 +27,7 @@ export class OtpPage implements OnInit {
   }
 
   submit() {
-    console.log("otp", this.otp);
+    
     this.verifyOtp();
   }
 
@@ -47,7 +47,7 @@ export class OtpPage implements OnInit {
         } else {
           this.parseData = res;
         }
-        console.log("verify otp api :", this.parseData);
+        
         if(this.parseData.status == true) {
           if(this.otpLoginFlag == true) {
             this.utils.presentAlert("OTP Verified, please login again");
@@ -67,7 +67,7 @@ export class OtpPage implements OnInit {
          
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("login error", err); 
+        
         this.utils.presentAlert("OTP Verification failed. Please check the OTP"); 
       });
     } else {
@@ -88,11 +88,11 @@ export class OtpPage implements OnInit {
         } else {
           this.parseData = res;
         }
-        console.log("resend otp api :", this.parseData);
+        
           this.utils.presentAlert(this.parseData.message);  
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("resend otp error", err); 
+        
        
       });
     } else {

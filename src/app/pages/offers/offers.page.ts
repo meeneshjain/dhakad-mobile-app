@@ -36,7 +36,7 @@ export class OffersPage implements OnInit {
       this.utils.presentLoading();
       this.httpService.httpGet(this.httpService.Url.offers).subscribe((res) => {
         this.utils.dismissLoading();
-        console.log("offers api :", res);
+        
 
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
@@ -45,10 +45,10 @@ export class OffersPage implements OnInit {
         }
            this.offers=this.parseData.data;
       
-          console.log("offers", this.offers);
+          
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("offers fetch api error :", err);
+        
       });
     } else {
       this.utils.presentAlert(this.utils.appConfig.internetMsg);
@@ -80,12 +80,12 @@ export class OffersPage implements OnInit {
 
   //   var successCallback = function (payment_id) {
   //     alert('payment_id: ' + payment_id);
-  //     console.log("payment ID",payment_id);
+  //     
   //   };
 
   //   var cancelCallback = function (error) {
   //     alert(error.description + ' (Error ' + error.code + ')');
-  //     console.log("failure",error);
+  //     
   //   };
   //   this.platform.ready().then(() => {
   //     RazorpayCheckout.open(options, successCallback, cancelCallback);
@@ -99,22 +99,22 @@ export class OffersPage implements OnInit {
 
   payWithRazor(actualPrice, planID, planName){
      this.planID = planID;
-     this.paymentAmount = actualPrice;
-    console.log("Price: "+actualPrice,"Plan ID : "+planID ,"PlanName : "+planName);
+    this.paymentAmount = (actualPrice*100)
+    
     var options = {
     description: 'Premium Membership',
     image: '',
     order_id: '',
     currency: this.currency,
     key:this.razor_key,
-    amount:this.paymentAmount,
+    amount:this.paymentAmount.toFixed(2),
     name: 'Dhakad Matrimony',
     theme: {
       color: '#f10558'
         },
    
   //  handler:  (response)=>{
-  //    console.log("handler called",response);
+  //    
   //    alert("Handler called");
   //       this.sendPaymetID(response);
   //       }
@@ -128,12 +128,12 @@ if(success.org_name == undefined)
 else
 this.paymentStatus = "Success";
 this.paymentID = success.razorpay_payment_id;
-
+  
 
 alert('Transcation is Successful With Payment ID'+success.razorpay_payment_id);
 
 this.sendPaymetID(success);
-console.log("response from Razor pay",JSON.stringify(success));
+
 }
 var cancelCallback = (error)=> {
   //alert(error.description + ' (Error '+error.code+')')
@@ -150,7 +150,7 @@ RazorpayCheckout.open(options)
 }
 
 sendPaymetID(response){
-   console.log(response);
+   
   //  alert("Sendpayment Function called");
   //  alert(JSON.stringify(response));
    
@@ -170,18 +170,19 @@ sendPaymetID(response){
       this.httpService.httpPostwithHeader(this.httpService.Url.payment,postParams , token).subscribe((res) => {
         this.utils.dismissLoading();
         
+        this.shared_service.hide_show_premium(true);
         if(this.platform.is('cordova')) {
           this.parseData = JSON.parse(res.data);
         } else {
           this.parseData = res;
         }
-        console.log("add to shortlist  api :", this.parseData);
+        
         this.utils.presentAlert(this.parseData.message);
-        this.shared_service.hide_show_premium(true);
+        
 
       }, (err) => {
         this.utils.dismissLoading();
-        console.log("add to shortlist error", err); 
+        
         this.utils.presentAlert("Unable to process your request "); 
       });
     } else {

@@ -29,6 +29,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { DatePipe } from '@angular/common';
+import { SharedService } from './services/shared.service';
 
 import { AppRate } from '@ionic-native/app-rate/ngx'; 
 
@@ -61,6 +62,7 @@ import { AppRate } from '@ionic-native/app-rate/ngx';
 		FCM,
 		CallNumber,
 		DatePipe,
+		SharedService,
 	],
 	bootstrap: [ AppComponent ]
 })
